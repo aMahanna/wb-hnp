@@ -5,18 +5,18 @@ from src import conn, dir_path
 
 def main():
     cursor = conn.cursor()
-    cursor.execute("SHOW TABLES;")
+    cursor.execute("SELECT version()")
     data = cursor.fetchall()
 
-    for row in data:
-        print(row)
-
-    logging.info("SHOW TABLES; done")
+    print("--------------")
+    print(data)
+    print("--------------")
 
     with open(f"{dir_path}/../csv/HNP_StatsData.csv", newline="") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row["Country Code"])
+            # print(row['Country Code'])
+            break
 
 
 if __name__ == "__main__":
