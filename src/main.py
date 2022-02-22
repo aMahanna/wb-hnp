@@ -6,10 +6,10 @@ from src import conn, dir_path
 def main():
     cursor = conn.cursor()
     cursor.execute("SELECT version()")
-    data = cursor.fetchall()
+    version = cursor.fetchall()
 
     print("--------------")
-    print(data)
+    print(version)
     print("--------------")
 
     with open(f"{dir_path}/../csv/HNP_StatsData.csv", newline="") as csvfile:
