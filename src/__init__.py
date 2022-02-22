@@ -23,3 +23,5 @@ password = os.environ.get("PGSQL_PASS")
 conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
 
 logging.info(f"Connected to {host}: {dbname}")
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
