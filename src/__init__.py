@@ -17,11 +17,12 @@ logger = logging.getLogger(__file__)
 host = os.environ.get("PGSQL_HOST")
 user = os.environ.get("PGSQL_USER")
 dbname = os.environ.get("PGSQL_DBNAME")
-password = os.environ.get("PGSQL_PASS")
+password = os.environ.get("PGSQL_PASSWORD")
 
 # See https://docs.microsoft.com/en-us/azure/postgresql/connect-python
 conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
 
-logging.info(f"Connected to {host}: {dbname}")
+logging.info(f"Connected to {host} - {dbname}")
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
