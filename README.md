@@ -5,3 +5,5 @@
 3. `source .venv/bin/activate`
 4. `pip install -e .`
 5. `python src/main.py`
+
+Countries: Iran, China, Lebanon, Ukraine, Vietnam, India
