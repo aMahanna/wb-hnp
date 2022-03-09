@@ -1,6 +1,6 @@
 {
     "Fact Table": {
-        "YearKey": "NULL",
+        "MonthKey": "NULL",
         "CountryKey": "NULL",
         "EducationKey": "NULL",
         "QualityOfLifeKey": "NULL",
@@ -12,11 +12,12 @@
         "HDI": "NULL (KEY VARIES BY YEAR)",
         "GNIPerCapita": "NULL (KEY VARIES BY YEAR)"
     },
-    "Year": {
-        "YearKey": "NULL",
-        "Year": "NULL (2005 to 2020)",
-        "Decade": "NULL",
-        "Century": "NULL"
+    "Month": {
+        "MonthKey": "NULL",
+        "Name": "NULL",
+        "Quarter": "NULL",
+        "Year": "NULL",
+        "Decade": "NULL"
     },
     "Country": {
         "CountryKey": "NULL",
