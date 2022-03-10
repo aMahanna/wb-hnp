@@ -30,8 +30,11 @@ def write_month():
             for i in range(0, 12):
                 quarter = i // 3 + 1
                 decade = floor(year / 10) * 10
+
+                primary_key = f"{i+1}{str(year)[-2:]}".zfill(4)
                 writer.writerow(
                     {
+                        "month_key": primary_key,
                         "code": i + 1,
                         "name": months[i],
                         "quarter": quarter,
@@ -73,7 +76,7 @@ def write_country():
 
 # TODO: Data Staging, dump into CSV files
 def main():
-    # write_month()
+    write_month()
     # write_country()
     logging.info("Success!")
 

@@ -31,6 +31,7 @@ schema = {
     "Month": {
         "primary_key": "month_key INT PRIMARY KEY",
         "attributes": {
+            "month_key": "INT PRIMARY KEY",
             "code": "INT NOT NULL",
             "name": "VARCHAR(9) NOT NULL",
             "quarter": "INT NOT NULL",
@@ -42,6 +43,7 @@ schema = {
     "Country": {
         "primary_key": "country_key INT PRIMARY KEY",
         "attributes": {
+            "country_key": "INT PRIMARY KEY",
             "name": "VARCHAR(20) NOT NULL",
             "code": "VARCHAR(3) NOT NULL",
             "region": "VARCHAR(255) NOT NULL",
@@ -67,6 +69,7 @@ schema = {
     "WB_HNP": {
         "primary_key": "id INT PRIMARY KEY",
         "attributes": {
+            "id": "INT PRIMARY KEY",
             "month_key": "INT",
             "country_key": "INT",
             # TODO: more PFKs & measures

@@ -1,3 +1,7 @@
+##############################
+# NOTE: CODE IS DECOMMISSIONED
+##############################
+
 import logging
 
 from src import conn, dir_path, schema

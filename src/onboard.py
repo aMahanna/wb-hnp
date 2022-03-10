@@ -13,7 +13,7 @@ def main():
         attributes: dict = table["attributes"]
         rules: str = table["rules"]
 
-        parameters = f"{primary_key}, {''.join([f'{atrb} {type}, ' for atrb, type in attributes.items()])}{rules}"
+        parameters = f"{''.join([f'{atrb} {type}, ' for atrb, type in attributes.items()])}{rules}"
         query = f"CREATE TABLE {name}({parameters.rstrip(', ')});"
         logging.info(f"Executing: CREATE TABLE {name}")
         cursor.execute(query)
