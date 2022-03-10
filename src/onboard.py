@@ -1,77 +1,22 @@
 import logging
-from src import conn, dir_path
 
-
-def create_month():
-    return f"""
-        CREATE TABLE Month (
-            month_key INT PRIMARY KEY, 
-            name VARCHAR(9) NOT NULL,
-            quarter INT NOT NULL,
-            year INT NOT NULL,
-            decade INT NOT NULL,
-            CHECK (quarter BETWEEN 1 AND 4),
-            CONSTRAINT fk_month
-                FOREIGN KEY(month_key) 
-	                REFERENCES month(month_key)
-	                ON DELETE SET NULL
-        );
-    """
-
-
-def create_country():
-    return f"""
-        CREATE TABLE Country(
-            country_key INT PRIMARY KEY,
-            name VARCHAR(20) NOT NULL,
-            code VARCHAR(3) NOT NULL,
-            region VARCHAR(255) NOT NULL,
-            continent VARCHAR(255) NOT NULL,
-            currency VARCHAR(255) NOT NULL,
-            income_group VARCHAR(255) NOT NULL,
-            population INT,
-            crude_birth_rate FLOAT,
-            crude_death_rate FLOAT,
-            labor_force INT,
-            net_migration INT,
-            life_expectancy FLOAT,
-            life_expectancy_male FLOAT,
-            life_expectancy_female FLOAT
-        );
-    """
-
-
-def create_fact_table():
-    return f"""
-        CREATE TABLE WB_HNP (
-            fact_key INT PRIMARY KEY, 
-            month_key INT,
-            country_key INT,
-            CONSTRAINT fk_month
-                FOREIGN KEY(month_key) 
-	                REFERENCES month(month_key)
-	                ON DELETE SET NULL,
-            CONSTRAINT fk_country
-                FOREIGN KEY(country_key) 
-	                REFERENCES country(country_key)
-	                ON DELETE SET NULL
-        );
-    """
+from src import conn, schema
 
 
 def main():
     cursor = conn.cursor()
-    cursor.execute(
-        "DROP TABLE IF EXISTS Month, Country, Education, Health, Nutrition, QualityOfLife, WB_HNP;"
-    )
+    cursor.execute(f"DROP TABLE IF EXISTS {', '.join(schema.keys())};")
 
-    cursor.execute(create_month())
-    cursor.execute(create_country())
-    # cursor.execute(create_education())
-    # cursor.execute(create_health())
-    # cursor.execute(create_nutrition())
-    # cursor.execute(create_qualityoflife())
-    cursor.execute(create_fact_table())
+    table: dict
+    for name, table in schema.items():
+        primary_key = table["primary_key"]
+        attributes: dict = table["attributes"]
+        rules: str = table["rules"]
+
+        parameters = f"{primary_key}, {''.join([f'{atrb} {type}, ' for atrb, type in attributes.items()])}{rules}"
+        query = f"CREATE TABLE {name}({parameters.rstrip(', ')});"
+        logging.info(f"Executing: CREATE TABLE {name}")
+        cursor.execute(query)
 
     conn.commit()
     conn.close()

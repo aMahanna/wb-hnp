@@ -1,5 +1,5 @@
 import csv
-import logging
+
 from src import conn, dir_path
 
 

@@ -1,35 +1,22 @@
-import csv
 import logging
-from src import conn, dir_path
+
+from src import conn, dir_path, schema
 
 
 def main():
     cursor = conn.cursor()
 
-    cursor.execute(
-        f"""
-        COPY month(name, quarter, year, decade)
-        FROM {dir_path}/../csv/tables/month.csv
-        DELIMITER ','
-        CSV HEADER;
-    """
-    )
-
-    cursor.execute(
-        f"""
-        COPY country(name, code, region, continent, currency, income_group, population, crude_birth_rate, crude_death_rate, labor_force, net_migration, life_expectancy, life_expectancy_male, life_expectancy_female)
-        FROM {dir_path}/../csv/tables/month.csv
-        DELIMITER ','
-        CSV HEADER;
-    """
-    )
-
-    # cursor.execute(f"""
-    #     COPY WB_HNP(TODO)
-    #     FROM {dir_path}/../csv/tables/month.csv
-    #     DELIMITER ','
-    #     CSV HEADER;
-    # """)
+    # TODO: Grant bigboss the role of `pg_read_server_files`
+    for name, table in schema.items():
+        logging.info(f"Executing: COPY {name}")
+        cursor.execute(
+            f"""
+            COPY {name}({', '.join(table['attributes'].keys())})
+            FROM '{dir_path}/.../csv/tables/{name}.csv'
+            DELIMITER ','
+            CSV HEADER;
+            """
+        )
 
     conn.commit()
     conn.close()
