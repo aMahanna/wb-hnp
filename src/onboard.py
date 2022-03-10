@@ -1,12 +1,10 @@
 import logging
 from src import conn, dir_path
 
-def main():
-    cursor = conn.cursor()
-    cursor.execute("DROP TABLE IF EXISTS month, country, wb_hnp;")
 
-    month = f"""
-        CREATE TABLE month (
+def create_month():
+    return f"""
+        CREATE TABLE Month (
             month_key INT PRIMARY KEY, 
             name VARCHAR(9) NOT NULL,
             quarter INT NOT NULL,
@@ -19,11 +17,11 @@ def main():
 	                ON DELETE SET NULL
         );
     """
-    cursor.execute(month)
 
 
-    country = f"""
-        CREATE TABLE country(
+def create_country():
+    return f"""
+        CREATE TABLE Country(
             country_key INT PRIMARY KEY,
             name VARCHAR(20) NOT NULL,
             code VARCHAR(3) NOT NULL,
@@ -41,10 +39,11 @@ def main():
             life_expectancy_female FLOAT
         );
     """
-    cursor.execute(country)
 
-    wb_hnp = f"""
-        CREATE TABLE wb_hnp (
+
+def create_fact_table():
+    return f"""
+        CREATE TABLE WB_HNP (
             fact_key INT PRIMARY KEY, 
             month_key INT,
             country_key INT,
@@ -58,7 +57,21 @@ def main():
 	                ON DELETE SET NULL
         );
     """
-    cursor.execute(wb_hnp)
+
+
+def main():
+    cursor = conn.cursor()
+    cursor.execute(
+        "DROP TABLE IF EXISTS Month, Country, Education, Health, Nutrition, QualityOfLife, WB_HNP;"
+    )
+
+    cursor.execute(create_month())
+    cursor.execute(create_country())
+    # cursor.execute(create_education())
+    # cursor.execute(create_health())
+    # cursor.execute(create_nutrition())
+    # cursor.execute(create_qualityoflife())
+    cursor.execute(create_fact_table())
 
     conn.commit()
     conn.close()
