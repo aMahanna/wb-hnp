@@ -31,12 +31,13 @@ schema = {
     "Month": {
         "primary_key": "month_key INT PRIMARY KEY",
         "attributes": {
+            "code": "INT NOT NULL",
             "name": "VARCHAR(9) NOT NULL",
             "quarter": "INT NOT NULL",
             "year": "INT NOT NULL",
             "decade": "INT NOT NULL",
         },
-        "rules": "CHECK (quarter BETWEEN 1 AND 4)",
+        "rules": "CHECK (quarter BETWEEN 1 AND 4), CHECK (code BETWEEN 1 AND 12)",
     },
     "Country": {
         "primary_key": "country_key INT PRIMARY KEY",
