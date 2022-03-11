@@ -31,7 +31,6 @@
         "CrudeBirthRate": "SP.DYN.CBRT.IN",
         "CrudeDeathRate": "SP.DYN.CDRT.IN",
         "LaborForce": "SL.TLF.TOTL.IN",
-        "NetMigration": "SM.POP.NETM",
         "LifeExpectancy": "SP.DYN.LE00.IN",
         "LifeExpectencyMale": "SP.DYN.LE00.MA.IN",
         "LifeExpectencyFemale": "SP.DYN.LE00.FE.IN"
@@ -134,7 +133,6 @@
         "PopulationRural": "SP.RUR.TOTL.ZS",
         "PopulationAges0004Male": "SP.POP.0004.MA.5Y",
         "PopulationAges0004Female": "SP.POP.0004.FE.5Y",
-        "...": "...",
         "PopulationAges80UPMale": "SP.POP.80UP.MA.5Y",
         "PopulationAges80UPFemale": "SP.POP.80UP.FA.5Y"
     }
