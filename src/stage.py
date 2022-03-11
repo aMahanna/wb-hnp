@@ -1,10 +1,8 @@
-from collections import defaultdict
 import csv
-import json
 import logging
 from math import floor
 
-from src import dir_path, SCHEMA, statsData
+from src import SCHEMA, dir_path, statsData
 
 
 def write_month():
@@ -28,22 +26,24 @@ def write_month():
         fieldnames = list(MONTH["attributes"].keys())
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
-        for year in range(2005, 2021):
-            for i in range(0, 12):
-                quarter = i // 3 + 1
-                decade = floor(year / 10) * 10
 
-                primary_key = f"{i+1}{str(year)[-2:]}".zfill(4)
+        i = 1
+        for year in range(2005, 2021):
+            for j in range(0, 12):
+                quarter = j // 3 + 1
+                decade = floor(year / 10) * 10
                 writer.writerow(
                     {
-                        "month_key": primary_key,
-                        "code": i + 1,
-                        "name": months[i],
+                        "month_key": i,
+                        "code": j + 1,
+                        "name": months[j],
                         "quarter": quarter,
                         "year": year,
                         "decade": decade,
                     }
                 )
+
+                i += 1
 
 
 def write_country():
@@ -51,9 +51,9 @@ def write_country():
     COUNTRY_SCHEMA = SCHEMA["Country"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
         fieldnames = (
-            list(COUNTRY_SCHEMA["attributes"].keys())
+            ["year"]
+            + list(COUNTRY_SCHEMA["attributes"].keys())
             + list(ind["name"] for ind in COUNTRY_SCHEMA["indicators"].values())
-            + ["year"]
         )
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -68,6 +68,7 @@ def write_country():
         ) as StatsCountryCSV:
             readerStatsCountry = csv.DictReader(StatsCountryCSV)
             for i, row in enumerate(readerStatsCountry):
+                # NOTE: NO DATA QUALITY ISSUES IN THIS FILE
                 countryDict[row["Country Code"]] = {
                     "country_key": i + 1,
                     "name": row["Short Name"],
@@ -100,6 +101,7 @@ def write_country():
                 year = str(j)
                 writer.writerow(
                     {
+                        **{"year": year},
                         **{
                             atr: country[atr]
                             for atr in COUNTRY_SCHEMA["attributes"].keys()
@@ -108,7 +110,6 @@ def write_country():
                             ind["name"]: country["years"][year][ind["name"]]
                             for ind in COUNTRY_SCHEMA["indicators"].values()
                         },
-                        **{"year": year},
                     }
                 )
 

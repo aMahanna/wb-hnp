@@ -4,7 +4,7 @@
 
 import logging
 
-from src import conn, dir_path, SCHEMA
+from src import SCHEMA, conn, dir_path
 
 
 def main():

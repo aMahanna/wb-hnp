@@ -1,6 +1,6 @@
 import logging
 
-from src import conn, SCHEMA
+from src import SCHEMA, conn
 
 
 def main():

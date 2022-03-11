@@ -1,5 +1,5 @@
-import logging
 import csv
+import logging
 import os
 
 import psycopg2
@@ -64,12 +64,11 @@ SCHEMA = {
     # "Education": {
     #     "attributes": {
     #         "education_key": "SERIAL PRIMARY KEY",
-    #         "indicators": {}
     #     },
+    #     "indicators": {}
     #     "rules": ""
     # },
     "WB_HNP": {
-        "primary_key": "id INT PRIMARY KEY",
         "attributes": {
             "id": "SERIAL PRIMARY KEY",
             "month_key": "SERIAL",
