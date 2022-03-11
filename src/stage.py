@@ -27,14 +27,14 @@ def write_month():
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
-        i = 1
+        month_key = 1
         for year in range(2005, 2021):
             for j in range(0, 12):
                 quarter = j // 3 + 1
                 decade = floor(year / 10) * 10
                 writer.writerow(
                     {
-                        "month_key": i,
+                        "month_key": month_key,
                         "code": j + 1,
                         "name": months[j],
                         "quarter": quarter,
@@ -43,7 +43,7 @@ def write_month():
                     }
                 )
 
-                i += 1
+                month_key += 1
 
 
 def write_country():
