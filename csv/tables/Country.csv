@@ -14,7 +14,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,1,Canada,CAN,North America,Canadian dollar,High income,36545295,10.3,7.5,20166002,81.9,79.9,84
 2018,1,Canada,CAN,North America,Canadian dollar,High income,37065178,10.1,7.7,20349922,82.04878049,80,84.2
 2019,1,Canada,CAN,North America,Canadian dollar,High income,37593384,9.9,7.6,20743970,82.04878049,80,84.2
-2020,1,Canada,CAN,North America,Canadian dollar,High income,38005238,,,20457473,,,
+2020,1,Canada,CAN,North America,Canadian dollar,High income,38005238,9.9,7.6,20457473,82.04878049,80,84.2
 2005,2,United States,USA,North America,U.S. dollar,High income,295516599,14,8.3,152069621,77.48780488,75,80.1
 2006,2,United States,USA,North America,U.S. dollar,High income,298379912,14.3,8.1,153926382,77.68780488,75.2,80.3
 2007,2,United States,USA,North America,U.S. dollar,High income,301231207,14.3,8,155217714,77.98780488,75.5,80.6
@@ -30,7 +30,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,2,United States,USA,North America,U.S. dollar,High income,325122128,11.8,8.638,164326552,78.53902439,76.1,81.1
 2018,2,United States,USA,North America,U.S. dollar,High income,326838199,11.6,8.678,165551383,78.63902439,76.2,81.2
 2019,2,United States,USA,North America,U.S. dollar,High income,328329953,11.4,8.7,167329067,78.78780488,76.3,81.4
-2020,2,United States,USA,North America,U.S. dollar,High income,329484123,,,165163504,,,
+2020,2,United States,USA,North America,U.S. dollar,High income,329484123,11.4,8.7,165163504,78.78780488,76.3,81.4
 2005,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,106005199,21.741,4.792,43772747,75.3,72.575,77.999
 2006,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,107560155,21.343,4.869,45215867,75.296,72.532,78.035
 2007,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,109170503,20.973,4.961,46262334,75.255,72.447,78.039
@@ -46,7 +46,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,124777326,17.918,5.933,55135552,74.947,72.046,77.827
 2018,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,126190782,17.602,6.01,56255842,74.992,72.118,77.844
 2019,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,127575529,17.297,6.082,57839046,75.054,72.203,77.879
-2020,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,128932753,,,53978977,,,
+2020,3,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,128932753,17.297,6.082,53978977,75.054,72.203,77.879
 2005,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,69762345,17.401,5.041,24209910,71.917,70.438,73.502
 2006,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,70554756,17.52,5.039,24201525,72.257,70.698,73.934
 2007,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,71336476,17.663,5.025,24164868,72.626,71.03,74.344
@@ -62,7 +62,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,80673888,19.011,4.835,27421048,76.271,75.217,77.436
 2018,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,81800204,18.783,4.843,27769359,76.479,75.409,77.668
 2019,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,82913893,18.42,4.842,28212245,76.677,75.593,77.885
-2020,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,83992953,,,26813322,,,
+2020,4,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,83992953,18.42,4.842,26813322,76.677,75.593,77.885
 2005,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1303720000,12.4,6.51,763719669,72.985,71.297,74.845
 2006,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1311020000,12.09,6.81,768097158,73.271,71.551,75.17
 2007,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1317885000,12.1,6.93,771363502,73.553,71.788,75.508
@@ -78,7 +78,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1396215000,12.43,7.11,792758868,76.47,74.315,78.828
 2018,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1402760000,10.94,7.13,791646536,76.704,74.549,79.051
 2019,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1407745000,10.5,7.1,789607035,76.912,74.761,79.244
-2020,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1410929362,,,775799016,,,
+2020,5,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1410929362,10.5,7.1,775799016,76.912,74.761,79.244
 2005,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4698761,16.579,4.051,1556549,76.865,75.081,78.72
 2006,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4759760,16.105,3.984,1597997,77.26,75.484,79.153
 2007,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4767347,15.858,3.936,1624066,77.609,75.844,79.534
@@ -94,7 +94,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6819373,17.67,4.263,2348425,78.833,77.031,80.786
 2018,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6859408,17.545,4.356,2387681,78.875,77.076,80.821
 2019,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6855709,17.377,4.457,2423712,78.93,77.14,80.869
-2020,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6825442,,,2317840,,,
+2020,6,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6825442,17.377,4.457,2317840,78.93,77.14,80.869
 2005,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,47105171,9,16.6,22167507,67.95682927,62.23,73.97
 2006,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46787786,9.8,16.2,22043101,68.07756098,62.38,74.06
 2007,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46509355,10.2,16.4,21924436,68.22219512,62.51,74.22
@@ -110,7 +110,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44831135,9.4,14.5,20621915,71.78097561,67.02,76.78
 2018,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44622518,8.7,14.8,20417459,71.58268293,66.69,76.72
 2019,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44386203,8.1,14.7,20207728,71.82731707,66.92,76.98
-2020,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44134693,,,19461889,,,
+2020,7,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44134693,8.1,14.7,19461889,71.82731707,66.92,76.98
 2005,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,83832662,16.805,5.651,46598033,74.092,69.722,78.425
 2006,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,84617545,16.903,5.664,47441387,74.295,70.005,78.532
 2007,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,85419588,17.017,5.686,48338674,74.474,70.255,78.631
@@ -126,7 +126,7 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,94600643,16.979,6.253,56468715,75.241,71.124,79.366
 2018,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,95545959,16.745,6.317,57028658,75.317,71.207,79.442
 2019,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,96462108,16.454,6.38,57307619,75.4,71.301,79.523
-2020,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,97338583,,,56542377,,,
+2020,8,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,97338583,16.454,6.38,56542377,75.4,71.301,79.523
 2005,9,India,IND,South Asia,Indian rupee,Lower middle income,1147609924,24.087,8.074,449085795,64.5,63.689,65.357
 2006,9,India,IND,South Asia,Indian rupee,Lower middle income,1165486291,23.564,7.958,451850201,64.918,64.091,65.793
 2007,9,India,IND,South Asia,Indian rupee,Lower middle income,1183209471,22.996,7.839,454681299,65.35,64.499,66.253
@@ -142,4 +142,4 @@ year,country_key,name,code,region,currency,income_group,population,crude_birth_r
 2017,9,India,IND,South Asia,Indian rupee,Lower middle income,1338676779,18.083,7.21,484539161,69.165,68,70.425
 2018,9,India,IND,South Asia,Indian rupee,Lower middle income,1352642283,17.857,7.234,487631036,69.416,68.239,70.692
 2019,9,India,IND,South Asia,Indian rupee,Lower middle income,1366417756,17.644,7.265,494732703,69.656,68.464,70.95
-2020,9,India,IND,South Asia,Indian rupee,Lower middle income,1380004385,,,471688990,,,
+2020,9,India,IND,South Asia,Indian rupee,Lower middle income,1380004385,17.644,7.265,471688990,69.656,68.464,70.95

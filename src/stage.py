@@ -90,8 +90,9 @@ def write_country():
                 ind_name = COUNTRY_SCHEMA["indicators"][row["Indicator Code"]]["name"]
                 ind_value = row[year]
 
-                # TODO: HANDLE DATA QUALITY ISSUES HERE
-                # if not ind_value ...
+                if not ind_value:  # Handle Missing Country Data
+                    if year == "2020":  # UNIQUE CASE: Use 2019 values
+                        ind_value = row["2019"]
 
                 country["years"][year][ind_name] = ind_value
 
@@ -118,6 +119,13 @@ def write_country():
 def main():
     write_month()
     write_country()
+    # write_education()
+    # write_health()
+    # write_nutrition()
+    # write_qualityoflife()
+    # write_population()
+    # write_event()
+    # write_fact_table()
     logging.info("Success!")
 
 
