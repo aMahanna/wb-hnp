@@ -50,9 +50,8 @@ def write_country():
     logging.info("Executing: Write Country")
     COUNTRY_SCHEMA = SCHEMA["Country"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
-        fieldnames = ["year"] + list(
-            atr["name"] for atr in COUNTRY_SCHEMA["attributes"].values()
-        )
+        attributes = [atr["name"] for atr in COUNTRY_SCHEMA["attributes"].values()]
+        fieldnames = ["month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -96,18 +95,22 @@ def write_country():
 
         ################################ Write Country.csv ################################
         for i, country in enumerate(countryDict.values()):
+            month_key = 1
             for j in range(2005, 2021):
                 year = str(j)
-                writer.writerow(
-                    {
-                        **{"year": year},
-                        **{
-                            atr["name"]: country.get(atr["name"], None)
-                            or country["years"][year][atr["name"]]
-                            for atr in COUNTRY_SCHEMA["attributes"].values()
-                        },
-                    }
-                )
+                for _ in range(1, 13):
+                    writer.writerow(
+                        {
+                            **{"month_key": month_key},
+                            **{
+                                atr["name"]: country.get(atr["name"], None)
+                                or country["years"][year][atr["name"]]
+                                for atr in COUNTRY_SCHEMA["attributes"].values()
+                            },
+                        }
+                    )
+
+                    month_key += 1
 
 
 # TODO: Data Staging, dump into CSV files
