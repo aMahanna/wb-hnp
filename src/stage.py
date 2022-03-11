@@ -1,13 +1,15 @@
+from collections import defaultdict
 import csv
 import json
 import logging
 from math import floor
 
-from src import dir_path, schema
+from src import dir_path, SCHEMA, statsData
 
 
 def write_month():
     logging.info("Executing: Write Month")
+    MONTH = SCHEMA["Month"]
     months = [
         "January",
         "February",
@@ -23,7 +25,7 @@ def write_month():
         "December",
     ]
     with open(f"{dir_path}/../csv/tables/Month.csv", "w", newline="") as outfile:
-        fieldnames = list(schema["Month"]["attributes"].keys())
+        fieldnames = list(MONTH["attributes"].keys())
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
         for year in range(2005, 2021):
@@ -46,13 +48,18 @@ def write_month():
 
 def write_country():
     logging.info("Executing: Write Country")
+    COUNTRY_SCHEMA = SCHEMA["Country"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
-        fieldnames = list(schema["Country"]["attributes"].keys())
+        fieldnames = (
+            list(COUNTRY_SCHEMA["attributes"].keys())
+            + list(ind["name"] for ind in COUNTRY_SCHEMA["indicators"].values())
+            + ["year"]
+        )
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
-        ################################ HNP_StatsCountry.csv ################################
-        statsCountryDict = {}
+        ################################ Load HNP_StatsCountry.csv ################################
+        countryDict = {}
         with open(
             f"{dir_path}/../csv/attributes/HNP_StatsCountry.csv",
             newline="",
@@ -60,24 +67,56 @@ def write_country():
             encoding="utf-8-sig",
         ) as StatsCountryCSV:
             readerStatsCountry = csv.DictReader(StatsCountryCSV)
-            for row in readerStatsCountry:
-                statsCountryDict[row["Country Code"]] = {
+            for i, row in enumerate(readerStatsCountry):
+                countryDict[row["Country Code"]] = {
+                    "country_key": i + 1,
                     "name": row["Short Name"],
                     "code": row["Country Code"],
                     "region": row["Region"],
                     "currency": row["Currency Unit"],
                     "income_group": row["Income Group"],
+                    "years": {},
                 }
 
-        print(json.dumps(statsCountryDict, indent=2))
-        ################################ HNP_StatsData.csv ################################
-        # TODO
+        ################################ Load HNP_StatsData.csv ################################
+        for row in statsData:
+            country = countryDict[row["Country Code"]]
+            for i in range(2005, 2021):
+                year = str(i)
+                if year not in country["years"]:
+                    country["years"][year] = {}
+
+                ind_name = COUNTRY_SCHEMA["indicators"][row["Indicator Code"]]["name"]
+                ind_value = row[year]
+
+                # TODO: HANDLE DATA QUALITY ISSUES HERE
+                # if not ind_value ...
+
+                country["years"][year][ind_name] = ind_value
+
+        ################################ Write Country.csv ################################
+        for i, country in enumerate(countryDict.values()):
+            for j in range(2005, 2021):
+                year = str(j)
+                writer.writerow(
+                    {
+                        **{
+                            atr: country[atr]
+                            for atr in COUNTRY_SCHEMA["attributes"].keys()
+                        },
+                        **{
+                            ind["name"]: country["years"][year][ind["name"]]
+                            for ind in COUNTRY_SCHEMA["indicators"].values()
+                        },
+                        **{"year": year},
+                    }
+                )
 
 
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
-    # write_country()
+    write_country()
     logging.info("Success!")
 
 

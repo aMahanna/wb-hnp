@@ -1,20 +1,24 @@
 import logging
 
-from src import conn, schema
+from src import conn, SCHEMA
 
 
 def main():
     cursor = conn.cursor()
-    cursor.execute(f"DROP TABLE IF EXISTS {', '.join(schema.keys())};")
+    cursor.execute(f"DROP TABLE IF EXISTS {', '.join(SCHEMA.keys())};")
 
     table: dict
-    for name, table in schema.items():
-        primary_key = table["primary_key"]
-        attributes: dict = table["attributes"]
-        rules: str = table["rules"]
+    for name, table in SCHEMA.items():
+        attributes = table["attributes"].items()
+        indicators = table.get("indicators", {}).values()
 
-        parameters = f"{''.join([f'{atrb} {type}, ' for atrb, type in attributes.items()])}{rules}"
-        query = f"CREATE TABLE {name}({parameters.rstrip(', ')});"
+        atrs = ",".join([f"{atr} {type}" for atr, type in attributes])
+        inds = ",".join([f"{ind['name']} {ind['type']}" for ind in indicators])
+        rules = ",".join(table["rules"])
+
+        parameters = f"{atrs}{',' + inds if inds else ''}{',' + rules if rules else ''}"
+        query = f"CREATE TABLE {name}({parameters});"
+
         logging.info(f"Executing: CREATE TABLE {name}")
         cursor.execute(query)
 
