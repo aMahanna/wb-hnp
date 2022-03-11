@@ -9,14 +9,11 @@ def main():
 
     table: dict
     for name, table in SCHEMA.items():
-        attributes = table["attributes"].items()
-        indicators = table.get("indicators", {}).values()
-
-        atrs = ",".join([f"{atr} {type}" for atr, type in attributes])
-        inds = ",".join([f"{ind['name']} {ind['type']}" for ind in indicators])
+        attributes = table.get("attributes", {}).values()
+        atrs = ",".join([f"{atr['name']} {atr['type']}" for atr in attributes])
         rules = ",".join(table["rules"])
 
-        parameters = f"{atrs}{',' + inds if inds else ''}{',' + rules if rules else ''}"
+        parameters = f"{atrs}{',' + rules if rules else ''}"
         query = f"CREATE TABLE {name}({parameters});"
 
         logging.info(f"Executing: CREATE TABLE {name}")

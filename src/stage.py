@@ -23,7 +23,7 @@ def write_month():
         "December",
     ]
     with open(f"{dir_path}/../csv/tables/Month.csv", "w", newline="") as outfile:
-        fieldnames = list(MONTH["attributes"].keys())
+        fieldnames = list(atr["name"] for atr in MONTH["attributes"].values())
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -50,10 +50,8 @@ def write_country():
     logging.info("Executing: Write Country")
     COUNTRY_SCHEMA = SCHEMA["Country"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
-        fieldnames = (
-            ["year"]
-            + list(COUNTRY_SCHEMA["attributes"].keys())
-            + list(ind["name"] for ind in COUNTRY_SCHEMA["indicators"].values())
+        fieldnames = ["year"] + list(
+            atr["name"] for atr in COUNTRY_SCHEMA["attributes"].values()
         )
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -87,7 +85,7 @@ def write_country():
                 if year not in country["years"]:
                     country["years"][year] = {}
 
-                ind_name = COUNTRY_SCHEMA["indicators"][row["Indicator Code"]]["name"]
+                ind_name = COUNTRY_SCHEMA["attributes"][row["Indicator Code"]]["name"]
                 ind_value = row[year]
 
                 if not ind_value:  # Handle Missing Country Data
@@ -104,12 +102,9 @@ def write_country():
                     {
                         **{"year": year},
                         **{
-                            atr: country[atr]
-                            for atr in COUNTRY_SCHEMA["attributes"].keys()
-                        },
-                        **{
-                            ind["name"]: country["years"][year][ind["name"]]
-                            for ind in COUNTRY_SCHEMA["indicators"].values()
+                            atr["name"]: country.get(atr["name"], None)
+                            or country["years"][year][atr["name"]]
+                            for atr in COUNTRY_SCHEMA["attributes"].values()
                         },
                     }
                 )

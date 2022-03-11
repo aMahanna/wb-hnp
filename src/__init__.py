@@ -31,25 +31,26 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 SCHEMA = {
     "Month": {
         "attributes": {
-            "month_key": "SERIAL PRIMARY KEY",
-            "code": "INT NOT NULL",
-            "name": "VARCHAR(9) NOT NULL",
-            "quarter": "INT NOT NULL",
-            "year": "INT NOT NULL",
-            "decade": "INT NOT NULL",
+            "Primary Key": {"name": "month_key", "type": "SERIAL PRIMARY KEY"},
+            "Code": {"name": "code", "type": "INT NOT NULL"},
+            "Name": {"name": "name", "type": "VARCHAR(9) NOT NULL"},
+            "Quarter": {"name": "quarter", "type": "INT NOT NULL"},
+            "Year": {"name": "year", "type": "INT NOT NULL"},
+            "Decade": {"name": "decade", "type": "INT NOT NULL"},
         },
         "rules": ["CHECK (quarter BETWEEN 1 AND 4)", "CHECK (code BETWEEN 1 AND 12)"],
     },
     "Country": {
         "attributes": {
-            "country_key": "SERIAL PRIMARY KEY",
-            "name": "VARCHAR(20) NOT NULL",
-            "code": "VARCHAR(3) NOT NULL",
-            "region": "VARCHAR(255) NOT NULL",
-            "currency": "VARCHAR(255) NOT NULL",
-            "income_group": "VARCHAR(255) NOT NULL",
-        },
-        "indicators": {
+            "Primary Key": {
+                "name": "country_key",
+                "type": "SERIAL PRIMARY KEY",
+            },
+            "Short Name": {"name": "name", "type": "VARCHAR(20) NOT NULL"},
+            "Country Code": {"name": "code", "type": "VARCHAR(3) NOT NULL"},
+            "Region": {"name": "region", "type": "VARCHAR(255) NOT NULL"},
+            "Currency Unit": {"name": "currency", "type": "VARCHAR(255) NOT NULL"},
+            "Income Group": {"name": "income_group", "type": "VARCHAR(255) NOT NULL"},
             "SP.POP.TOTL": {"name": "population", "type": "INT"},
             "SP.DYN.CBRT.IN": {"name": "crude_birth_rate", "type": "FLOAT"},
             "SP.DYN.CDRT.IN": {"name": "crude_death_rate", "type": "FLOAT"},
@@ -63,16 +64,18 @@ SCHEMA = {
     # TODO
     # "Education": {
     #     "attributes": {
-    #         "education_key": "SERIAL PRIMARY KEY",
+    #        "Primary Key": {
+    #             "name": "education_key",
+    #             "type": "SERIAL PRIMARY KEY",
+    #         },
     #     },
-    #     "indicators": {}
     #     "rules": ""
     # },
     "WB_HNP": {
         "attributes": {
-            "id": "SERIAL PRIMARY KEY",
-            "month_key": "SERIAL",
-            "country_key": "SERIAL",
+            "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
+            "Month Key": {"name": "month_key", "type": "SERIAL"},
+            "Country Key": {"name": "country_key", "type": "SERIAL"}
             # TODO: more PFKs & measures
         },
         "rules": [
@@ -91,10 +94,12 @@ SCHEMA = {
     },
 }
 
+atr: str
 indicators = set()
 for name, table in SCHEMA.items():
-    for ind in table.get("indicators", {}).keys():
-        indicators.add(ind)
+    for atr in table.get("attributes", {}).keys():
+        if atr.count(".") >= 2:
+            indicators.add(atr)
 
 statsData = []
 with open(
