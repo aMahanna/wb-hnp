@@ -1,4 +1,5 @@
 import csv
+from itertools import count
 import logging
 from math import floor
 from pickle import POP
@@ -64,7 +65,7 @@ def write_country():
     COUNTRY_SCHEMA = SCHEMA["Country"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in COUNTRY_SCHEMA["attributes"].values()]
-        fieldnames = ["month_key"] + attributes
+        fieldnames = attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -110,6 +111,7 @@ def write_country():
                 country["years"][year][ind_name] = ind_value
 
         ################################ Write Country.csv ################################
+        country_key = 1
         for code, country in countryDict.items():
             month_key = 1
             for j in range(2005, 2021):
@@ -117,16 +119,21 @@ def write_country():
                 for _ in range(1, 13):
                     writer.writerow(
                         {
-                            **{"month_key": month_key},
+                            **{
+                                # "month_key": month_key,
+                                "country_key": country_key
+                            },
                             **{
                                 atr["name"]: country.get(atr["name"], None)
                                 or country["years"][year][atr["name"]]
                                 for atr in COUNTRY_SCHEMA["attributes"].values()
+                                if atr["name"] != "country_key"
                             },
                         }
                     )
 
                     month_key += 1
+                    country_key += 1
 
 
 def write_population():
@@ -135,7 +142,7 @@ def write_population():
 
     with open(f"{dir_path}/../csv/tables/Population.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in POP_SCHEMA["attributes"].values()]
-        fieldnames = ["month_key", "country_key"] + attributes
+        fieldnames = attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -170,8 +177,8 @@ def write_population():
                     writer.writerow(
                         {
                             **{
-                                "month_key": month_key,
-                                "country_key": country_key,
+                                # "month_key": month_key,
+                                # "country_key": country_key,
                                 "population_key": population_key,
                             },
                             **{
@@ -194,7 +201,7 @@ def write_qualityoflife():
         f"{dir_path}/../csv/tables/QualityOfLife.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in QOL_SCHEMA["attributes"].values()]
-        fieldnames = ["month_key", "country_key"] + attributes
+        fieldnames = attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -242,8 +249,8 @@ def write_qualityoflife():
                     writer.writerow(
                         {
                             **{
-                                "month_key": month_key,
-                                "country_key": country_key,
+                                # "month_key": month_key,
+                                # "country_key": country_key,
                                 "qualityoflife_key": qualityoflife_key,
                             },
                             **{
@@ -258,6 +265,40 @@ def write_qualityoflife():
                     qualityoflife_key += 1
 
 
+def write_fact_table():
+    logging.info("Executing: Write Fact Table")
+    FACT_SCHEMA = SCHEMA["WB_HNP"]
+
+    with open(
+        f"{dir_path}/../csv/tables/WB_HNP.csv", "w", newline=""
+    ) as outfile:
+        fieldnames = [atr["name"] for atr in FACT_SCHEMA["attributes"].values()]
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        ################################ Load Measures ################################
+        # TODO
+
+        ################################ Write Population.csv ################################
+        key = 1
+        for country_key in range(1, 10):
+            month_key = 1
+            for j in range(2005, 2021):
+                for t in range(1, 13):
+                    writer.writerow(
+                        {
+                            "id": key,
+                            "month_key": month_key,
+                            "country_key": key,
+                            "population_key": key,
+                            "qualityoflife_key": key,
+                        }
+                    )
+
+                    key += 1
+                    month_key += 1
+
+
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
@@ -268,7 +309,7 @@ def main():
     write_qualityoflife()
     write_population()
     # write_event()
-    # write_fact_table()
+    write_fact_table()
     logging.info("Success!")
 
 
