@@ -72,6 +72,39 @@ SCHEMA = {
     #     },
     #     "rules": ""
     # },
+    "QualityOfLife": {
+        "attributes": {
+            "Primary Key": {"name": "qualityoflife_key", "type": "SERIAL PRIMARY KEY"},
+            "SL.UEM.TOTL.ZS": {"name": "unemployment_rate", "type": "FLOAT"},
+            "SL.UEM.TOTL.MA.ZS": {"name": "unemployment_rate_male", "type": "FLOAT"},
+            "SL.UEM.TOTL.FE.ZS": {"name": "unemployment_rate_female", "type": "FLOAT"},
+            "SH.STA.SUIC.P5": {"name": "suicide_rate", "type": "FLOAT"},
+            "SH.STA.SUIC.MA.P5": {"name": "suicide_rate_male", "type": "FLOAT"},
+            "SH.STA.SUIC.FE.P5": {"name": "suicide_rate_female", "type": "FLOAT"},
+            "SH.STA.BASS.ZS": {"name": "sanitation_access", "type": "FLOAT"},
+            "SH.STA.BASS.UR.ZS": {"name": "sanitation_access_urban", "type": "FLOAT"},
+            "SH.STA.BASS.RU.ZS": {"name": "sanitation_access_rural", "type": "FLOAT"},
+            "SH.H2O.BASW.ZS": {"name": "drinking_water_access", "type": "FLOAT"},
+            "SH.H2O.BASW.UR.ZS": {
+                "name": "drinking_water_access_urban",
+                "type": "FLOAT",
+            },
+            "SH.H2O.BASW.RU.ZS": {
+                "name": "drinking_water_access_rural",
+                "type": "FLOAT",
+            },
+            "SH.STA.ODFC.ZS": {"name": "open_defecation_practice", "type": "FLOAT"},
+            "SH.DYN.0509": {"name": "death_probability_0509", "type": "FLOAT"},
+            "SH.DYN.1014": {"name": "death_probability_1014", "type": "FLOAT"},
+            "SH.DYN.1519": {"name": "death_probability_1519", "type": "FLOAT"},
+            "SH.DYN.2024": {"name": "death_probability_2024", "type": "FLOAT"},
+            "SH.SGR.CRSK.ZS": {
+                "name": "catastrophic_health_expenditure_risk",
+                "type": "FLOAT",
+            },
+        },
+        "rules": [],
+    },
     "Population": {
         "attributes": {
             "Primary Key": {

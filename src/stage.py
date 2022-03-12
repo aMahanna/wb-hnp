@@ -186,6 +186,78 @@ def write_population():
                     population_key += 1
 
 
+def write_qualityoflife():
+    logging.info("Executing: Write QualityOfLife")
+    QOL_SCHEMA = SCHEMA["QualityOfLife"]
+
+    with open(
+        f"{dir_path}/../csv/tables/QualityOfLife.csv", "w", newline=""
+    ) as outfile:
+        attributes = [atr["name"] for atr in QOL_SCHEMA["attributes"].values()]
+        fieldnames = ["month_key", "country_key"] + attributes
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
+        ################################ Load HNP_StatsData.csv ################################
+        for row in statsData:
+            if row["Indicator Code"] not in QOL_SCHEMA["attributes"].keys():
+                continue
+
+            code = row["Country Code"]
+            country = countryDict[code]
+            for i in range(2005, 2021):
+                year = str(i)
+                if year not in country["years"]:
+                    country["years"][year] = {}
+
+                ind_name = QOL_SCHEMA["attributes"][row["Indicator Code"]]["name"]
+                ind_value = row[year]
+
+                if not ind_value:  # Handle Missing Population Data
+                    # Unique Case: Missing values for Lebanon
+                    if code == "LBN" and row["Indicator Code"] in [
+                        "SH.STA.BASS.UR.ZS",
+                        "SH.STA.BASS.RU.ZS",
+                        "SH.H2O.BASW.UR.ZS",
+                        "SH.H2O.BASW.RU.ZS",
+                        "SH.SGR.CRSK.ZS",
+                    ]:
+                        ind_value = None  # Leave as null
+                    elif year == "2020":  # Unique Class: Use 2019 values
+                        ind_value = row["2019"]
+                    else:
+                        raise Exception("balls")  # Should not happen
+
+                country["years"][year][ind_name] = ind_value
+
+        ################################ Write Population.csv ################################
+        qualityoflife_key = 1
+        for code, country in countryDict.items():
+            month_key = 1
+            for j in range(2005, 2021):
+                year = str(j)
+                for _ in range(1, 13):
+                    country_key = COUNTRY_MAP[code]
+                    writer.writerow(
+                        {
+                            **{
+                                "month_key": month_key,
+                                "country_key": country_key,
+                                "qualityoflife_key": qualityoflife_key,
+                            },
+                            **{
+                                atr["name"]: country["years"][year][atr["name"]]
+                                for atr in QOL_SCHEMA["attributes"].values()
+                                if atr["name"] != "qualityoflife_key"
+                            },
+                        }
+                    )
+
+                    month_key += 1
+                    qualityoflife_key += 1
+
+
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
@@ -193,7 +265,7 @@ def main():
     # write_education()
     # write_health()
     # write_nutrition()
-    # write_qualityoflife()
+    write_qualityoflife()
     write_population()
     # write_event()
     # write_fact_table()
