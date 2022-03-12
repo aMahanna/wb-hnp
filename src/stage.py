@@ -1,8 +1,21 @@
 import csv
 import logging
 from math import floor
+from pickle import POP
 
 from src import SCHEMA, dir_path, statsData
+
+COUNTRY_MAP = {
+    "CAN": 1,
+    "USA": 2,
+    "MEX": 3,
+    "IRN": 4,
+    "CHN": 5,
+    "LBN": 6,
+    "UKR": 7,
+    "VNM": 8,
+    "IND": 9,
+}
 
 
 def write_month():
@@ -55,8 +68,8 @@ def write_country():
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
+        countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
         ################################ Load HNP_StatsCountry.csv ################################
-        countryDict = {}
         with open(
             f"{dir_path}/../csv/attributes/HNP_StatsCountry.csv",
             newline="",
@@ -67,7 +80,7 @@ def write_country():
             for i, row in enumerate(readerStatsCountry):
                 # NOTE: NO DATA QUALITY ISSUES IN THIS FILE
                 countryDict[row["Country Code"]] = {
-                    "country_key": i + 1,
+                    "country_key": COUNTRY_MAP[row["Country Code"]],
                     "name": row["Short Name"],
                     "code": row["Country Code"],
                     "region": row["Region"],
@@ -78,6 +91,9 @@ def write_country():
 
         ################################ Load HNP_StatsData.csv ################################
         for row in statsData:
+            if row["Indicator Code"] not in COUNTRY_SCHEMA["attributes"].keys():
+                continue
+
             country = countryDict[row["Country Code"]]
             for i in range(2005, 2021):
                 year = str(i)
@@ -94,7 +110,7 @@ def write_country():
                 country["years"][year][ind_name] = ind_value
 
         ################################ Write Country.csv ################################
-        for i, country in enumerate(countryDict.values()):
+        for code, country in countryDict.items():
             month_key = 1
             for j in range(2005, 2021):
                 year = str(j)
@@ -113,6 +129,63 @@ def write_country():
                     month_key += 1
 
 
+def write_population():
+    logging.info("Executing: Write Population")
+    POP_SCHEMA = SCHEMA["Population"]
+
+    with open(f"{dir_path}/../csv/tables/Population.csv", "w", newline="") as outfile:
+        attributes = [atr["name"] for atr in POP_SCHEMA["attributes"].values()]
+        fieldnames = ["month_key", "country_key"] + attributes
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
+        ################################ Load HNP_StatsData.csv ################################
+        for row in statsData:
+            if row["Indicator Code"] not in POP_SCHEMA["attributes"].keys():
+                continue
+
+            country = countryDict[row["Country Code"]]
+            for i in range(2005, 2021):
+                year = str(i)
+                if year not in country["years"]:
+                    country["years"][year] = {}
+
+                ind_name = POP_SCHEMA["attributes"][row["Indicator Code"]]["name"]
+                ind_value = row[year]
+
+                if not ind_value:  # Handle Missing Population Data
+                    raise Exception("balls")  # Should not happen
+
+                country["years"][year][ind_name] = ind_value
+
+        ################################ Write Population.csv ################################
+        population_key = 1
+        for code, country in countryDict.items():
+            month_key = 1
+            for j in range(2005, 2021):
+                year = str(j)
+                for _ in range(1, 13):
+                    country_key = COUNTRY_MAP[code]
+                    writer.writerow(
+                        {
+                            **{
+                                "month_key": month_key,
+                                "country_key": country_key,
+                                "population_key": population_key,
+                            },
+                            **{
+                                atr["name"]: country["years"][year][atr["name"]]
+                                for atr in POP_SCHEMA["attributes"].values()
+                                if atr["name"] != "population_key"
+                            },
+                        }
+                    )
+
+                    month_key += 1
+                    population_key += 1
+
+
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
@@ -121,7 +194,7 @@ def main():
     # write_health()
     # write_nutrition()
     # write_qualityoflife()
-    # write_population()
+    write_population()
     # write_event()
     # write_fact_table()
     logging.info("Success!")

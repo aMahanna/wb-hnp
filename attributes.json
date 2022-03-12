@@ -90,7 +90,7 @@
         "PrevalenceHypertensionFemale": "SH.HTN.PREV.FE.ZS",
         "PrevalenceOverweight": "SH.STA.OWAD.ZS",
         "PrevalenceOverweightMale": "SH.STA.OWAD.MA.ZS",
-        "PrevalenceOverweightFemale": "SH.STA.OWAD.FA.ZS",
+        "PrevalenceOverweightFemale": "SH.STA.OWAD.FE.ZS",
         "PrevalenceUndernourishment": "SN.ITK.DEFC.ZS",
         "PrevalenceAnemiaPregnantWomen": "SH.PRG.ANEM",
         "PrevalenceAnemiaNonPregnantWomen": "SH.ANM.NPRG.ZS",
@@ -129,12 +129,12 @@
         "PopulationFemale": "SP.POP.TOTL.FE.ZS",
         "PopulationUrban": "SP.URB.TOTL.IN.ZS",
         "PopulationUrbanGrowth": "SP.URB.GROW",
-        "PopulationRuralGrowth": "SP.RUR.TOTL.ZG",
         "PopulationRural": "SP.RUR.TOTL.ZS",
+        "PopulationRuralGrowth": "SP.RUR.TOTL.ZG",
         "PopulationAges0004Male": "SP.POP.0004.MA.5Y",
         "PopulationAges0004Female": "SP.POP.0004.FE.5Y",
         "PopulationAges80UPMale": "SP.POP.80UP.MA.5Y",
-        "PopulationAges80UPFemale": "SP.POP.80UP.FA.5Y"
+        "PopulationAges80UPFemale": "SP.POP.80UP.FE.5Y"
     }
     
 }
