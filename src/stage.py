@@ -348,7 +348,8 @@ def write_nutrition():
         fieldnames = ["nutrition_key", "country_key", "month_key"] + indicators
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
-
+        
+        curr_schema = SCHEMA["Nutrition"]["attributes"]
         ################################ Write Nutrition.csv ################################
         nutrition_key = 1
         indicator_country_to_real_country = {
@@ -375,7 +376,7 @@ def write_nutrition():
                                 "nutrition_key": nutrition_key,
                             },
                             **{
-                                atr: arr[j - 2005]
+                                curr_schema[atr]["name"]: arr[j - 2005]
                                 for atr, arr in indicators_dict.items()
                             },
                         }

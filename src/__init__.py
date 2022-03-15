@@ -154,13 +154,35 @@ SCHEMA = {
         },
         "rules": "",
     },
+
+    "Nutrition": {
+        "attributes": {
+            "Primary Key": {
+                "name": "nutrition_key",
+                "type": "SERIAL PRIMARY KEY",
+            },
+            "SH.HTN.PREV.ZS": {"name": "hyperten", "type": "FLOAT"},
+            "SH.HTN.PREV.MA.ZS": {"name": "hyperten_male", "type": "FLOAT"},
+            "SH.HTN.PREV.FE.ZS": {"name": "hyperten_female", "type": "FLOAT"},
+            "SH.STA.OWAD.ZS": {"name": "overweight", "type": "FLOAT"},
+            "SH.STA.OWAD.MA.ZS": {"name": "overweight_male", "type": "FLOAT"},
+            "SH.STA.OWAD.FE.ZS": {"name": "overweight_female", "type": "FLOAT"},
+            "SN.ITK.DEFC.ZS": {"name": "undernour", "type": "FLOAT"},
+            "SH.PRG.ANEM": {"name": "anemia_preg", "type": "FLOAT"},
+            "SH.ANM.NPRG.ZS": {"name": "anemia_non_preg", "type": "FLOAT"},
+            "SH.ANM.CHLD.ZS": {"name": "anemia_child", "type": "INT"},
+            "SH.STA.BRTW.ZS": {"name": "low_weight_babies", "type": "FLOAT"},
+        },
+        "rules": [],
+    },
     "WB_HNP": {
         "attributes": {
             "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
             "Month Key": {"name": "month_key", "type": "SERIAL"},
             "Country Key": {"name": "country_key", "type": "SERIAL"},
             "Population Key": {"name": "population_key", "type": "SERIAL"},
-            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"}
+            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
+            "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"}
             # TODO: more PFKs & measures
         },
         "rules": [
@@ -188,6 +210,13 @@ SCHEMA = {
 	                REFERENCES QualityOfLife(qualityoflife_key)
 	                    ON DELETE SET NULL
             """,
+            """
+            CONSTRAINT fk_nutrition_key
+                FOREIGN KEY(nutrition_key) 
+	                REFERENCES Nutrition(nutrition_key)
+	                    ON DELETE SET NULL
+            """,
+
         ],
     },
 }
