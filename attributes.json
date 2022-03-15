@@ -95,9 +95,7 @@
         "PrevalenceAnemiaPregnantWomen": "SH.PRG.ANEM",
         "PrevalenceAnemiaNonPregnantWomen": "SH.ANM.NPRG.ZS",
         "PrevalenceAnemiaChildren": "SH.ANM.CHLD.ZS",
-        "PrevalenceTobaccoUse": "SH.PRV.SMOK",
-        "LowBirthweightBabies": "SH.STA.BRTW.ZS",
-        "AlcoholConsumption": "SH.ALC.PCAP.LI"
+        "LowBirthweightBabies": "SH.STA.BRTW.ZS"
     },
     "QualityOfLife": {
         "QualityOfLifeKey": "NULL",

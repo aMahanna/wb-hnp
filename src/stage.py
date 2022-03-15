@@ -17,7 +17,82 @@ COUNTRY_MAP = {
     "IND": 9,
 }
 
+countryNames = ["Canada", "US", "Mexico", "Iran", "China", "Lebanon", "Ukraine", "Vietnam", "India"]
+def getDictsForCountry(country, useObj=False):
+    dicts = []
+    for row in country.split("\n"):
+        elements = row.split(",")
+        cleaned = []
+        for i in range(3):
+            
+            cleaned += [elements[i].strip()]
+        name, date, t = cleaned    
+        t = getType(t)
+        deaths = 0 
+        if len(elements) == 4:
+            deaths = int(getType(elements[3]))
 
+        # Date Transformation
+        splitDate = date.split("-")
+        
+        if len(splitDate) == 1:
+            date = Date(*date.split(" "))
+            present = past = date
+        else:
+            present, past = stripArr(splitDate)
+            present = Date(*present.split(" "))
+            if past.lower() == "present":
+                past = Date(12, 31, 2020)
+        if useObj:
+            present = present.__str__()
+            past = past.__str__()
+        
+        d = {"Name": name, "Start": present, "End": past, "Deaths": deaths}
+        dicts.append(d)
+    return dicts
+
+def int_s(p):
+    if p == '':
+        return None
+    return float(p)
+
+def createCountryToIndicators(indicators, rang=(1960,2021)):
+    country_to_indicators = {}
+
+    with open(
+            f"{dir_path}/../csv/attributes/HNP_StatsData.csv",
+            newline="",
+            mode="r",
+            encoding="utf-8-sig",
+        ) as StatsDataCSV:
+            readerStatsData = csv.DictReader(StatsDataCSV)
+            for row in readerStatsData:
+                if row["Indicator Code"] in indicators:
+                    if row["Country Name"] in country_to_indicators:
+
+                        country_to_indicators[row["Country Name"]][row["Indicator Code"]] = [int_s(row[str(i)]) for i in range(rang[0], rang[1]+1)]
+                    else:
+                        country_to_indicators[row["Country Name"]] = {row["Indicator Code"]: [int_s(row[str(i)]) for i in range(rang[0], rang[1]+1)]}
+
+    return country_to_indicators
+
+def replaceNoneSame(arr):
+    firstReal = 0
+    for i, x in enumerate(arr):
+        if x is not None:
+            firstReal = i
+            break
+    to_ret = arr[::]
+    for i in range(len(arr)):
+        if arr[i] is None:
+            if i == 0:
+                to_ret[0] = arr[firstReal]
+            else:
+                to_ret[i] = to_ret[i-1]
+        else:
+            to_ret[i] = arr[i]
+    return to_ret
+            
 def write_month():
     logging.info("Executing: Write Month")
     MONTH = SCHEMA["Month"]
@@ -258,13 +333,73 @@ def write_qualityoflife():
                     qualityoflife_key += 1
 
 
+def write_nutrition():
+
+
+    with open(base_dir + "/attributes.json", 'r') as f:
+        data = json.load(f)
+
+    indicator_names = {}
+    type_to_indicators = {}
+    for indicatorType, t in data.items():
+        type_to_indicators[indicatorType] = []
+        for p, key in t.items():
+            if "." in key:
+                indicator_names[key] = p
+                type_to_indicators[indicatorType].append(key)
+    indicators = type_to_indicators["Nutrition"]
+    canadaIndicators = createCountryToIndicators(indicators, rang=(2005,2020))["Canada"]
+
+    X = createCountryToIndicators(indicators, rang=(2005,2020))
+    for country, dic in X.items():
+        new_dict = {}
+        for indicator_name, arr in dic.items():
+            new_dict[indicator_name] = replaceNoneSame(arr)
+        X[country] = new_dict
+
+    with open(f"{base_dir}/../csv/tables/Nutrition.csv", "w", newline="") as outfile:
+        fieldnames = ["nutrition_key", "country_key", "month_key"] + indicators
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+
+        ################################ Write Nutrition.csv ################################
+        nutrition_key = 1
+        indicator_country_to_real_country = {"United States": "US", "Iran, Islamic Rep.": "Iran"}
+        for country, indicators_dict in X.items():
+            month_key = 1
+            for j in range(2005, 2021):
+                year = str(j)
+                for _ in range(1, 13):
+                    if country not in countryNames:
+                        country_key = countryNames.index(indicator_country_to_real_country[country])
+                    else:
+                        country_key = countryNames.index(country) + 1
+                    
+                    writer.writerow(
+                        {
+                            **{
+                                "month_key": month_key,
+                                "country_key": country_key,
+                                "nutrition_key": nutrition_key,
+                            },
+                            **{
+                                atr: arr[j-2005]
+                                for atr, arr in indicators_dict.items()
+                            },
+                        }
+                    )
+                    
+                    month_key += 1
+                    nutrition_key += 1
+
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
     write_country()
     # write_education()
     # write_health()
-    # write_nutrition()
+    write_nutrition()
     write_qualityoflife()
     write_population()
     # write_event()
