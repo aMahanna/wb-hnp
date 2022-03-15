@@ -323,7 +323,6 @@ def write_qualityoflife():
 
 def write_nutrition():
     logging.info("Executing: Write Nutrition")
-    NUT_SCHEMA = SCHEMA["Nutrition"]
 
     with open(dir_path + "/../attributes.json", "r") as f:
         data = json.load(f)
@@ -376,7 +375,7 @@ def write_nutrition():
                                 "nutrition_key": nutrition_key,
                             },
                             **{
-                                NUT_SCHEMA["attributes"][atr]["name"]: arr[j - 2005]
+                                atr: arr[j - 2005]
                                 for atr, arr in indicators_dict.items()
                             },
                         }
