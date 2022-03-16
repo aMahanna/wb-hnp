@@ -62,6 +62,63 @@ SCHEMA = {
         },
         "rules": [],
     },
+    "Health": {
+        "attributes": {
+            "Primary Key": {"name": "nutrition_key", "type": "SERIAL PRIMARY KEY"},
+            "SH.XPD.GHED.GD.ZS": {
+                "name": "domestic_health_expenditure",
+                "type": "FLOAT",
+            },
+            "SH.MED.BEDS.ZS": {"name": "num_hospital_beds", "type": "FLOAT"},
+            "SH.MED.PHYS.ZS": {"name": "num_physicians", "type": "FLOAT"},
+            "SH.MED.NUMW.P3": {"name": "num_nurses", "type": "FLOAT"},
+            "SH.IMM.IBCG": {"name": "immunization_bcg", "type": "FLOAT"},
+            "SH.IMM.IDPT": {"name": "immunization_dpt", "type": "FLOAT"},
+            "SH.IMM.HEPB": {"name": "immunization_hepb", "type": "FLOAT"},
+            "SH.IMM.MEAS": {"name": "immunization_measles", "type": "FLOAT"},
+            "SH.IMM.POL3": {"name": "immunization_polio", "type": "FLOAT"},
+            "SP.DYN.IMRT.IN": {"name": "mort_infant", "type": "FLOAT"},
+            "SP.DYN.IMRT.MA.IN": {"name": "mort_infant_male", "type": "FLOAT"},
+            "SP.DYN.IMRT.FE.IN": {"name": "mort_infant_female", "type": "FLOAT"},
+            "SH.DYN.NCOM.ZS": {
+                "name": "mort_non_communicable_disease",
+                "type": "FLOAT",
+            },
+            "SH.DYN.NCOM.MA.ZS": {
+                "name": "mort_non_communicable_disease_male",
+                "type": "FLOAT",
+            },
+            "SH.DYN.NCOM.FE.ZS": {
+                "name": "mort_non_communicable_disease_female",
+                "type": "FLOAT",
+            },
+            "SH.STA.POIS.P5": {
+                "name": "mort_unintentional_poison",
+                "type": "FLOAT",
+            },
+            "SH.STA.POIS.P5.MA": {
+                "name": "mort_unintentional_poison_male",
+                "type": "FLOAT",
+            },
+            "SH.STA.POIS.P5.FE": {
+                "name": "mort_unintentional_poison_female",
+                "type": "FLOAT",
+            },
+            "SH.STA.TRAF.P5": {"name": "mort_traffic_injury", "type": "FLOAT"},
+            "SH.STA.TRAF.MA.P5": {
+                "name": "mort_traffic_injury_male",
+                "type": "FLOAT",
+            },
+            "SH.STA.TRAF.FE.P5": {
+                "name": "mort_traffic_injury_female",
+                "type": "FLOAT",
+            },
+            "SH.STA.MMRT": {"name": "mort_maternal", "type": "FLOAT"},
+            "SH.DYN.STLB": {"name": "stillbirth_rate", "type": "FLOAT"},
+            "SP.DYN.TFRT.IN": {"name": "fertility_rate", "type": "FLOAT"},
+        },
+        "rules": [],
+    },
     # TODO
     # "Education": {
     #     "attributes": {
@@ -154,7 +211,6 @@ SCHEMA = {
         },
         "rules": "",
     },
-
     "Nutrition": {
         "attributes": {
             "Primary Key": {
@@ -216,7 +272,6 @@ SCHEMA = {
 	                REFERENCES Nutrition(nutrition_key)
 	                    ON DELETE SET NULL
             """,
-
         ],
     },
 }

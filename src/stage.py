@@ -124,9 +124,9 @@ def write_month():
 
 def write_country():
     logging.info("Executing: Write Country")
-    COUNTRY_SCHEMA = SCHEMA["Country"]
+    COUNTRY_ATRS = SCHEMA["Country"]["attributes"]
     with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
-        attributes = [atr["name"] for atr in COUNTRY_SCHEMA["attributes"].values()]
+        attributes = [atr["name"] for atr in COUNTRY_ATRS.values()]
         fieldnames = ["month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -154,7 +154,7 @@ def write_country():
 
         ################################ Load HNP_StatsData.csv ################################
         for row in statsData:
-            if row["Indicator Code"] not in COUNTRY_SCHEMA["attributes"].keys():
+            if row["Indicator Code"] not in COUNTRY_ATRS.keys():
                 continue
 
             country = countryDict[row["Country Code"]]
@@ -163,7 +163,7 @@ def write_country():
                 if year not in country["years"]:
                     country["years"][year] = {}
 
-                ind_name = COUNTRY_SCHEMA["attributes"][row["Indicator Code"]]["name"]
+                ind_name = COUNTRY_ATRS[row["Indicator Code"]]["name"]
                 ind_value = row[year]
 
                 if not ind_value:  # Handle Missing Country Data
@@ -184,7 +184,7 @@ def write_country():
                             **{
                                 atr["name"]: country.get(atr["name"], None)
                                 or country["years"][year][atr["name"]]
-                                for atr in COUNTRY_SCHEMA["attributes"].values()
+                                for atr in COUNTRY_ATRS.values()
                             },
                         }
                     )
@@ -194,10 +194,10 @@ def write_country():
 
 def write_population():
     logging.info("Executing: Write Population")
-    POP_SCHEMA = SCHEMA["Population"]
+    POP_ATRS = SCHEMA["Population"]["attributes"]
 
     with open(f"{dir_path}/../csv/tables/Population.csv", "w", newline="") as outfile:
-        attributes = [atr["name"] for atr in POP_SCHEMA["attributes"].values()]
+        attributes = [atr["name"] for atr in POP_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -205,7 +205,7 @@ def write_population():
         countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
         ################################ Load HNP_StatsData.csv ################################
         for row in statsData:
-            if row["Indicator Code"] not in POP_SCHEMA["attributes"].keys():
+            if row["Indicator Code"] not in POP_ATRS.keys():
                 continue
 
             country = countryDict[row["Country Code"]]
@@ -214,7 +214,7 @@ def write_population():
                 if year not in country["years"]:
                     country["years"][year] = {}
 
-                ind_name = POP_SCHEMA["attributes"][row["Indicator Code"]]["name"]
+                ind_name = POP_ATRS[row["Indicator Code"]]["name"]
                 ind_value = row[year]
 
                 if not ind_value:  # Handle Missing Population Data
@@ -239,7 +239,7 @@ def write_population():
                             },
                             **{
                                 atr["name"]: country["years"][year][atr["name"]]
-                                for atr in POP_SCHEMA["attributes"].values()
+                                for atr in POP_ATRS.values()
                                 if atr["name"] != "population_key"
                             },
                         }
@@ -251,12 +251,12 @@ def write_population():
 
 def write_qualityoflife():
     logging.info("Executing: Write QualityOfLife")
-    QOL_SCHEMA = SCHEMA["QualityOfLife"]
+    QOL_ATRS = SCHEMA["QualityOfLife"]["attributes"]
 
     with open(
         f"{dir_path}/../csv/tables/QualityOfLife.csv", "w", newline=""
     ) as outfile:
-        attributes = [atr["name"] for atr in QOL_SCHEMA["attributes"].values()]
+        attributes = [atr["name"] for atr in QOL_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -264,7 +264,7 @@ def write_qualityoflife():
         countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
         ################################ Load HNP_StatsData.csv ################################
         for row in statsData:
-            if row["Indicator Code"] not in QOL_SCHEMA["attributes"].keys():
+            if row["Indicator Code"] not in QOL_ATRS.keys():
                 continue
 
             code = row["Country Code"]
@@ -274,7 +274,7 @@ def write_qualityoflife():
                 if year not in country["years"]:
                     country["years"][year] = {}
 
-                ind_name = QOL_SCHEMA["attributes"][row["Indicator Code"]]["name"]
+                ind_name = QOL_ATRS[row["Indicator Code"]]["name"]
                 ind_value = row[year]
 
                 if not ind_value:  # Handle Missing Population Data
@@ -311,7 +311,7 @@ def write_qualityoflife():
                             },
                             **{
                                 atr["name"]: country["years"][year][atr["name"]]
-                                for atr in QOL_SCHEMA["attributes"].values()
+                                for atr in QOL_ATRS.values()
                                 if atr["name"] != "qualityoflife_key"
                             },
                         }
@@ -321,8 +321,70 @@ def write_qualityoflife():
                     qualityoflife_key += 1
 
 
+def write_health():
+    logging.info("Executing: Write Health")
+    HEALTH_ATRS = SCHEMA["Health"]["attributes"]
+
+    with open(f"{dir_path}/../csv/tables/Health.csv", "w", newline="") as outfile:
+        attributes = [atr["name"] for atr in HEALTH_ATRS.values()]
+        fieldnames = ["month_key", "country_key"] + attributes
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
+        ################################ Load HNP_StatsData.csv ################################
+        for row in statsData:
+            if row["Indicator Code"] not in HEALTH_ATRS.keys():
+                continue
+
+            code = row["Country Code"]
+            country = countryDict[code]
+            for i in range(2005, 2021):
+                year = str(i)
+                if year not in country["years"]:
+                    country["years"][year] = {}
+
+                ind_name = HEALTH_ATRS[row["Indicator Code"]]["name"]
+                ind_value = row[year]
+
+                if not ind_value:  # Handle Missing Population Data
+                    if year == "2020" and row["2019"]:
+                        ind_value = row["2019"]  # Use 2019 for missing 2020 values
+                    else:
+                        ind_value = None  # Nullify everything else
+
+                country["years"][year][ind_name] = ind_value
+
+        ################################ Write QualityOfLife.csv ################################
+        health_key = 1
+        for code, country in countryDict.items():
+            month_key = 1
+            for j in range(2005, 2021):
+                year = str(j)
+                for _ in range(1, 13):
+                    country_key = COUNTRY_MAP[code]
+                    writer.writerow(
+                        {
+                            **{
+                                "month_key": month_key,
+                                "country_key": country_key,
+                                "health_key": health_key,
+                            },
+                            **{
+                                atr["name"]: country["years"][year][atr["name"]]
+                                for atr in HEALTH_ATRS.values()
+                                if atr["name"] != "health_key"
+                            },
+                        }
+                    )
+
+                    month_key += 1
+                    health_key += 1
+
+
 def write_nutrition():
     logging.info("Executing: Write Nutrition")
+    NUT_ATRS = SCHEMA["Nutrition"]["attributes"]
 
     with open(dir_path + "/../attributes.json", "r") as f:
         data = json.load(f)
@@ -345,10 +407,11 @@ def write_nutrition():
         X[country] = new_dict
 
     with open(f"{dir_path}/../csv/tables/Nutrition.csv", "w", newline="") as outfile:
-        fieldnames = ["nutrition_key", "country_key", "month_key"] + indicators
+        attributes = [atr["name"] for atr in NUT_ATRS.values()]
+        fieldnames = ["country_key", "month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
-        
+
         curr_schema = SCHEMA["Nutrition"]["attributes"]
         ################################ Write Nutrition.csv ################################
         nutrition_key = 1
@@ -376,7 +439,7 @@ def write_nutrition():
                                 "nutrition_key": nutrition_key,
                             },
                             **{
-                                curr_schema[atr]["name"]: arr[j - 2005]
+                                NUT_ATRS[atr]["name"]: arr[j - 2005]
                                 for atr, arr in indicators_dict.items()
                             },
                         }
