@@ -218,7 +218,8 @@ def write_population():
                 ind_value = row[year]
 
                 if not ind_value:  # Handle Missing Population Data
-                    raise Exception("balls")  # Should not happen
+                    # Should not happen
+                    raise Exception(f"{ind_name} ({code}, {year})")
 
                 country["years"][year][ind_name] = ind_value
 
@@ -290,7 +291,8 @@ def write_qualityoflife():
                     elif year == "2020":  # Unique Class: Use 2019 values
                         ind_value = row["2019"]
                     else:
-                        raise Exception("balls")  # Should not happen
+                        # Should not happen
+                        raise Exception(f"{ind_name} ({code}, {year})")
 
                 country["years"][year][ind_name] = ind_value
 
@@ -350,8 +352,19 @@ def write_health():
                 if not ind_value:  # Handle Missing Population Data
                     if year == "2020" and row["2019"]:
                         ind_value = row["2019"]  # Use 2019 for missing 2020 values
+                    elif row["Indicator Code"] in [
+                        "SH.MED.BEDS.ZS",
+                        "SH.MED.PHYS.ZS",
+                        "SH.MED.NUMW.P3",
+                        "SH.IMM.IBCG",
+                        "SH.STA.MMRT",
+                    ]:
+                        ind_value = (
+                            None  # Nullify any non-2020 values for these indicators
+                        )
                     else:
-                        ind_value = None  # Nullify everything else
+                        # Should not happen
+                        raise Exception(f"{ind_name} ({code}, {year})")
 
                 country["years"][year][ind_name] = ind_value
 
