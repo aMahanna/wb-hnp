@@ -365,7 +365,7 @@ def write_health():
 
                 country["years"][year][ind_name] = ind_value
 
-        ################################ Write QualityOfLife.csv ################################
+        ################################ Write Health.csv ################################
         health_key = 1
         for code, country in countryDict.items():
             for j in range(2005, 2021):
