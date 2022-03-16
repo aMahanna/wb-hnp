@@ -244,8 +244,8 @@ SCHEMA = {
     #     },
     #     "rules": [
     #         """
-    #         CONSTRAINT fk_month 
-    #             FOREIGN KEY(month_key) 
+    #         CONSTRAINT fk_month
+    #             FOREIGN KEY(month_key)
     #                 REFERENCES Month(month_key)
     #                     ON DELETE SET NULL
     #         """,
@@ -253,31 +253,31 @@ SCHEMA = {
     #         CONSTRAINT fk_country
     #             FOREIGN KEY(country_key)
     #                 REFERENCES Country(country_key)
-	#                     ON DELETE SET NULL
+    #                     ON DELETE SET NULL
     #         """,
     #         """
     #         CONSTRAINT fk_health
-    #             FOREIGN KEY(health_key) 
-	#                 REFERENCES Health(health_key)
-	#                     ON DELETE SET NULL
+    #             FOREIGN KEY(health_key)
+    #                 REFERENCES Health(health_key)
+    #                     ON DELETE SET NULL
     #         """,
     #         """
     #         CONSTRAINT fk_population
-    #             FOREIGN KEY(population_key) 
-	#                 REFERENCES Population(population_key)
-	#                     ON DELETE SET NULL
+    #             FOREIGN KEY(population_key)
+    #                 REFERENCES Population(population_key)
+    #                     ON DELETE SET NULL
     #         """,
     #         """
     #         CONSTRAINT fk_qualityoflife
-    #             FOREIGN KEY(qualityoflife_key) 
-	#                 REFERENCES QualityOfLife(qualityoflife_key)
-	#                     ON DELETE SET NULL
+    #             FOREIGN KEY(qualityoflife_key)
+    #                 REFERENCES QualityOfLife(qualityoflife_key)
+    #                     ON DELETE SET NULL
     #         """,
     #         """
     #         CONSTRAINT fk_nutrition
-    #             FOREIGN KEY(nutrition_key) 
-	#                 REFERENCES Nutrition(nutrition_key)
-	#                     ON DELETE SET NULL
+    #             FOREIGN KEY(nutrition_key)
+    #                 REFERENCES Nutrition(nutrition_key)
+    #                     ON DELETE SET NULL
     #         """,
     #     ],
     # },
