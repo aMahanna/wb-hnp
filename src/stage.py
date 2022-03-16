@@ -421,7 +421,6 @@ def write_nutrition():
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
-        curr_schema = SCHEMA["Nutrition"]["attributes"]
         ################################ Write Nutrition.csv ################################
         nutrition_key = 1
         indicator_country_to_real_country = {
