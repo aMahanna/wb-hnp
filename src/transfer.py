@@ -13,7 +13,7 @@ def main():
 
         data = pd.read_csv(f"{dir_path}/../csv/tables/stage/{name}.csv")
         if name not in ["Month", "WB_HNP"]:
-            data.drop("month_key", inplace=True, axis=1)
+            data.drop("year_key", inplace=True, axis=1)
 
             if name != "Country":
                 data.drop("country_key", inplace=True, axis=1)
