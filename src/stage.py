@@ -454,7 +454,7 @@ def main():
     write_month()
     write_country()
     # write_education()
-    # write_health()
+    write_health()
     write_nutrition()
     write_qualityoflife()
     write_population()

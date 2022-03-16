@@ -64,7 +64,7 @@ SCHEMA = {
     },
     "Health": {
         "attributes": {
-            "Primary Key": {"name": "nutrition_key", "type": "SERIAL PRIMARY KEY"},
+            "Primary Key": {"name": "health_key", "type": "SERIAL PRIMARY KEY"},
             "SH.XPD.GHED.GD.ZS": {
                 "name": "domestic_health_expenditure",
                 "type": "FLOAT",
