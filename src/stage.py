@@ -125,7 +125,9 @@ def write_month():
 def write_country():
     logging.info("Executing: Write Country")
     COUNTRY_ATRS = SCHEMA["Country"]["attributes"]
-    with open(f"{dir_path}/../csv/tables/stage/Country.csv", "w", newline="") as outfile:
+    with open(
+        f"{dir_path}/../csv/tables/stage/Country.csv", "w", newline=""
+    ) as outfile:
         attributes = [atr["name"] for atr in COUNTRY_ATRS.values()]
         fieldnames = ["month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -198,7 +200,9 @@ def write_population():
     logging.info("Executing: Write Population")
     POP_ATRS = SCHEMA["Population"]["attributes"]
 
-    with open(f"{dir_path}/../csv/tables/stage/Population.csv", "w", newline="") as outfile:
+    with open(
+        f"{dir_path}/../csv/tables/stage/Population.csv", "w", newline=""
+    ) as outfile:
         attributes = [atr["name"] for atr in POP_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -421,7 +425,9 @@ def write_nutrition():
             new_dict[indicator_name] = replaceNoneSame(arr)
         X[country] = new_dict
 
-    with open(f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline="") as outfile:
+    with open(
+        f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline=""
+    ) as outfile:
         attributes = [atr["name"] for atr in NUT_ATRS.values()]
         fieldnames = ["country_key", "month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
