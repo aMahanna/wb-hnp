@@ -226,7 +226,7 @@ SCHEMA = {
             "SN.ITK.DEFC.ZS": {"name": "undernour", "type": "FLOAT"},
             "SH.PRG.ANEM": {"name": "anemia_preg", "type": "FLOAT"},
             "SH.ANM.NPRG.ZS": {"name": "anemia_non_preg", "type": "FLOAT"},
-            "SH.ANM.CHLD.ZS": {"name": "anemia_child", "type": "INT"},
+            "SH.ANM.CHLD.ZS": {"name": "anemia_child", "type": "FLOAT"},
             "SH.STA.BRTW.ZS": {"name": "low_weight_babies", "type": "FLOAT"},
         },
         "rules": [],
@@ -236,6 +236,7 @@ SCHEMA = {
             "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
             "Month Key": {"name": "month_key", "type": "SERIAL"},
             "Country Key": {"name": "country_key", "type": "SERIAL"},
+            "Health Key": {"name": "health_key", "type": "SERIAL"},
             "Population Key": {"name": "population_key", "type": "SERIAL"},
             "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
             "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"}
@@ -255,6 +256,12 @@ SCHEMA = {
 	                    ON DELETE SET NULL
             """,
             """
+            CONSTRAINT fk_health
+                FOREIGN KEY(health_key) 
+	                REFERENCES Health(health_key)
+	                    ON DELETE SET NULL
+            """,
+            """
             CONSTRAINT fk_population
                 FOREIGN KEY(population_key) 
 	                REFERENCES Population(population_key)
@@ -267,7 +274,7 @@ SCHEMA = {
 	                    ON DELETE SET NULL
             """,
             """
-            CONSTRAINT fk_nutrition_key
+            CONSTRAINT fk_nutrition
                 FOREIGN KEY(nutrition_key) 
 	                REFERENCES Nutrition(nutrition_key)
 	                    ON DELETE SET NULL

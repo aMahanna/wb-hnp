@@ -1,9 +1,9 @@
 import csv
+import json
 import logging
 from math import floor
-import json
 
-from src import SCHEMA, dir_path, statsData, dir_path
+from src import SCHEMA, dir_path, statsData
 
 COUNTRY_MAP = {
     "CAN": 1,
@@ -98,7 +98,7 @@ def write_month():
         "November",
         "December",
     ]
-    with open(f"{dir_path}/../csv/tables/Month.csv", "w", newline="") as outfile:
+    with open(f"{dir_path}/../csv/tables/stage/Month.csv", "w", newline="") as outfile:
         fieldnames = list(atr["name"] for atr in MONTH["attributes"].values())
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -125,7 +125,7 @@ def write_month():
 def write_country():
     logging.info("Executing: Write Country")
     COUNTRY_ATRS = SCHEMA["Country"]["attributes"]
-    with open(f"{dir_path}/../csv/tables/Country.csv", "w", newline="") as outfile:
+    with open(f"{dir_path}/../csv/tables/stage/Country.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in COUNTRY_ATRS.values()]
         fieldnames = ["month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -143,7 +143,6 @@ def write_country():
             for i, row in enumerate(readerStatsCountry):
                 # NOTE: NO DATA QUALITY ISSUES IN THIS FILE
                 countryDict[row["Country Code"]] = {
-                    "country_key": COUNTRY_MAP[row["Country Code"]],
                     "name": row["Short Name"],
                     "code": row["Country Code"],
                     "region": row["Region"],
@@ -173,6 +172,7 @@ def write_country():
                 country["years"][year][ind_name] = ind_value
 
         ################################ Write Country.csv ################################
+        country_key = 1
         for code, country in countryDict.items():
             month_key = 1
             for j in range(2005, 2021):
@@ -180,23 +180,25 @@ def write_country():
                 for _ in range(1, 13):
                     writer.writerow(
                         {
-                            **{"month_key": month_key},
+                            **{"month_key": month_key, "country_key": country_key},
                             **{
                                 atr["name"]: country.get(atr["name"], None)
                                 or country["years"][year][atr["name"]]
                                 for atr in COUNTRY_ATRS.values()
+                                if atr["name"] != "country_key"
                             },
                         }
                     )
 
                     month_key += 1
+                    country_key += 1
 
 
 def write_population():
     logging.info("Executing: Write Population")
     POP_ATRS = SCHEMA["Population"]["attributes"]
 
-    with open(f"{dir_path}/../csv/tables/Population.csv", "w", newline="") as outfile:
+    with open(f"{dir_path}/../csv/tables/stage/Population.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in POP_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -255,7 +257,7 @@ def write_qualityoflife():
     QOL_ATRS = SCHEMA["QualityOfLife"]["attributes"]
 
     with open(
-        f"{dir_path}/../csv/tables/QualityOfLife.csv", "w", newline=""
+        f"{dir_path}/../csv/tables/stage/QualityOfLife.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in QOL_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
@@ -327,7 +329,7 @@ def write_health():
     logging.info("Executing: Write Health")
     HEALTH_ATRS = SCHEMA["Health"]["attributes"]
 
-    with open(f"{dir_path}/../csv/tables/Health.csv", "w", newline="") as outfile:
+    with open(f"{dir_path}/../csv/tables/stage/Health.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in HEALTH_ATRS.values()]
         fieldnames = ["month_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -419,7 +421,7 @@ def write_nutrition():
             new_dict[indicator_name] = replaceNoneSame(arr)
         X[country] = new_dict
 
-    with open(f"{dir_path}/../csv/tables/Nutrition.csv", "w", newline="") as outfile:
+    with open(f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in NUT_ATRS.values()]
         fieldnames = ["country_key", "month_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
