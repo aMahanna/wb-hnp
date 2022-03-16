@@ -1,8 +1,6 @@
-##############################
-# NOTE: DECOMMISSIONED
-##############################
-
 import logging
+
+import pandas as pd
 
 from src import SCHEMA, conn, dir_path
 
@@ -10,17 +8,20 @@ from src import SCHEMA, conn, dir_path
 def main():
     cursor = conn.cursor()
 
-    # TODO: Grant bigboss the role of `pg_read_server_files`
     for name in SCHEMA.keys():
         logging.info(f"Executing: COPY {name}")
-        cursor.execute(
-            f"""
-            COPY {name}
-            FROM '{dir_path}/.../csv/tables/{name}.csv'
-            DELIMITER ','
-            CSV HEADER;
-            """
-        )
+
+        data = pd.read_csv(f"{dir_path}/../csv/tables/stage/{name}.csv")
+        if name not in ["Month", "WB_HNP"]:
+            data.drop("month_key", inplace=True, axis=1)
+
+            if name != "Country":
+                data.drop("country_key", inplace=True, axis=1)
+
+        data.to_csv(f"{dir_path}/../csv/tables/transfer/{name}.csv", index=False)
+        with open(f"{dir_path}/../csv/tables/transfer/{name}.csv", "r") as f:
+            next(f)
+            cursor.copy_from(f, name.lower(), sep=",", null="")
 
     conn.commit()
     conn.close()
