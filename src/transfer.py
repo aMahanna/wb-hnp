@@ -23,6 +23,7 @@ def main():
             next(f)
             cursor.copy_from(f, name.lower(), sep=",", null="")
 
+    logging.info("Success!")
     conn.commit()
     conn.close()
 
