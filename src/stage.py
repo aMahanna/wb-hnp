@@ -581,11 +581,21 @@ def write_fact_table():
     # for name in SCHEMA.keys():
     #     if name == "WB_HNP":
     #         continue
-
     #     with open(f"{dir_path}/../csv/tables/stage/{name}.csv") as csvData:
     #         next(csvData)
     #         file_read = csv.reader(csvData)
     #         DATA_DICT[name] = list(file_read)
+
+    EVENT_DICT = {
+        code: {month_key: set() for month_key in range(1, 193)}
+        for code in COUNTRY_MAP.values()
+    }
+    with open(f"{dir_path}/../csv/tables/stage/Event.csv") as EventCSV:
+        reader = csv.DictReader(EventCSV)
+        for row in reader:
+            for i in range(int(row["start_date"]), int(row["end_date"]) + 1):
+                EVENT_DICT[int(row["country_code"])][i].add(row["event_key"])
+                EVENT_DICT[int(row["country_code"])][i].add(row["event_key"])
 
     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
         fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
@@ -594,12 +604,11 @@ def write_fact_table():
 
         fact_key = 1
         dimension_key = 1
-        for _ in range(1, 10):
+        for country_code in range(1, 10):
             month_key = 1
             for _ in range(2005, 2021):
                 for _ in range(1, 13):
-                    for event in []:  # TODO
-                        event_key = event[month_key]  # TODO
+                    for event_key in EVENT_DICT[country_code][month_key]:
                         writer.writerow(
                             {
                                 "fact_key": fact_key,
@@ -610,11 +619,12 @@ def write_fact_table():
                                 "nutrition_key": dimension_key,
                                 "population_key": dimension_key,
                                 "qualityoflife_key": dimension_key,
-                                "event_key": event_key,  # TODO
+                                "event_key": event_key,
                             }
                         )
 
-                    fact_key += 1
+                        fact_key += 1
+
                     month_key += 1
 
                 dimension_key += 1

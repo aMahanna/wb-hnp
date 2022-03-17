@@ -292,7 +292,7 @@ SCHEMA = {
             "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
             "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"},
             "Education Key": {"name": "education_key", "type": "SERIAL"},
-            # "Event Key": {"name": "event_key", "type": "SERIAL"},
+            "Event Key": {"name": "event_key", "type": "SERIAL"},
         },
         "rules": [
             """
@@ -337,12 +337,12 @@ SCHEMA = {
                     REFERENCES Education(education_key)
                         ON DELETE SET NULL
             """,
-            # """
-            # CONSTRAINT fk_event
-            #     FOREIGN KEY(event_key)
-            #         REFERENCES Event(event_key)
-            #             ON DELETE SET NULL
-            # """,
+            """
+            CONSTRAINT fk_event
+                FOREIGN KEY(event_key)
+                    REFERENCES Event(event_key)
+                        ON DELETE SET NULL
+            """,
         ],
     },
 }
