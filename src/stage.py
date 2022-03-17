@@ -453,11 +453,14 @@ def write_nutrition():
 
                 nutrition_key += 1
 
+
 def write_education():
     logging.info("Executing: Write Education")
     EDUCATION_ATRS = SCHEMA["Education"]["attributes"]
 
-    with open(f"{dir_path}/../csv/tables/stage/Education.csv", "w", newline="") as outfile:
+    with open(
+        f"{dir_path}/../csv/tables/stage/Education.csv", "w", newline=""
+    ) as outfile:
         attributes = [atr["name"] for atr in EDUCATION_ATRS.values()]
         fieldnames = ["year_key", "country_key"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
@@ -522,10 +525,19 @@ def write_event():
         }
         date = date.split(" ")
         month, year = date[0], date[2]
-        return (int(year)-2005)+(MONTHS_MAP[month])
+        return ((int(year) - 2005) * 12) + (MONTHS_MAP[month])
 
-    COUNTRY_ABR_MAP = {'Canada': "CAN", 'US': "USA", 'Mexico': "MEX", 'Iran': "IRN",
-                       'China': "CHN", 'Lebanon': "LBN", 'Ukraine': "UKR", 'Vietnam': "VNM", 'India': "IND"}
+    COUNTRY_ABR_MAP = {
+        "Canada": "CAN",
+        "US": "USA",
+        "Mexico": "MEX",
+        "Iran": "IRN",
+        "China": "CHN",
+        "Lebanon": "LBN",
+        "Ukraine": "UKR",
+        "Vietnam": "VNM",
+        "India": "IND",
+    }
 
     logging.info("Executing: Write Event")
     EVENT_ATRS = SCHEMA["Event"]["attributes"]
@@ -535,7 +547,12 @@ def write_event():
         writer = csv.DictWriter(outfile, fieldnames=attributes)
         writer.writeheader()
 
-        with open(f"{dir_path}/../csv/attributes/country_event_data.csv", newline="", mode="r", encoding="utf-8-sig",) as eventDataCSV:
+        with open(
+            f"{dir_path}/../csv/attributes/country_event_data.csv",
+            newline="",
+            mode="r",
+            encoding="utf-8-sig",
+        ) as eventDataCSV:
             readerEventData = csv.DictReader(eventDataCSV)
 
             event_key = 1
@@ -556,13 +573,13 @@ def write_event():
 
 # TODO: Data Staging, dump into CSV files
 def main():
-    # write_month()
-    # write_country()
+    write_month()
+    write_country()
     write_education()
-    # write_health()
-    # write_nutrition()
-    # write_qualityoflife()
-    # write_population()
+    write_health()
+    write_nutrition()
+    write_qualityoflife()
+    write_population()
     write_event()
     # write_fact_table()
     logging.info("Success!")

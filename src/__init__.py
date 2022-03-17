@@ -21,9 +21,9 @@ dbname = os.environ.get("PGSQL_DBNAME")
 password = os.environ.get("PGSQL_PASSWORD")
 
 # See https://docs.microsoft.com/en-us/azure/postgresql/connect-python
-# conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
+conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
 
-# logging.info(f"Connected to {host} - {dbname}")
+logging.info(f"Connected to {host} - {dbname}")
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -127,20 +127,44 @@ SCHEMA = {
             },
             "SE.ADT.LITR.ZS": {"name": "literacy_rate_adult", "type": "FLOAT"},
             "SE.ADT.LITR.MA.ZS": {"name": "literacy_rate_adult_male", "type": "FLOAT"},
-            "SE.ADT.LITR.FE.ZS": {"name": "literacy_rate_adult_female", "type": "FLOAT"},
+            "SE.ADT.LITR.FE.ZS": {
+                "name": "literacy_rate_adult_female",
+                "type": "FLOAT",
+            },
             "SE.PRM.ENRR": {"name": "school_enrollment_primary", "type": "FLOAT"},
-            "SE.PRM.ENRR.MA": {"name": "school_enrollment_primary_male", "type": "FLOAT"},
-            "SE.PRM.ENRR.FE": {"name": "school_enrollment_primary_female", "type": "FLOAT"},
+            "SE.PRM.ENRR.MA": {
+                "name": "school_enrollment_primary_male",
+                "type": "FLOAT",
+            },
+            "SE.PRM.ENRR.FE": {
+                "name": "school_enrollment_primary_female",
+                "type": "FLOAT",
+            },
             "SE.SEC.ENRR": {"name": "school_enrollment_secondary", "type": "FLOAT"},
-            "SE.SEC.ENRR.MA": {"name": "school_enrollment_secondary_male", "type": "FLOAT"},
-            "SE.SEC.ENRR.FE": {"name": "school_enrollment_secondary_female", "type": "FLOAT"},
+            "SE.SEC.ENRR.MA": {
+                "name": "school_enrollment_secondary_male",
+                "type": "FLOAT",
+            },
+            "SE.SEC.ENRR.FE": {
+                "name": "school_enrollment_secondary_female",
+                "type": "FLOAT",
+            },
             "SE.TER.ENRR": {"name": "school_enrollment_tertiary", "type": "FLOAT"},
-            "SE.PRM.CMPT.ZS": {"name": "school_completion_rate_primary", "type": "FLOAT"},
-            "SE.PRM.CMPT.MA.ZS": {"name": "school_completion_rate_primary_male", "type": "FLOAT"},
-            "SE.PRM.CMPT.FE.ZS": {"name": "school_completion_rate_primary_female", "type": "FLOAT"},
+            "SE.PRM.CMPT.ZS": {
+                "name": "school_completion_rate_primary",
+                "type": "FLOAT",
+            },
+            "SE.PRM.CMPT.MA.ZS": {
+                "name": "school_completion_rate_primary_male",
+                "type": "FLOAT",
+            },
+            "SE.PRM.CMPT.FE.ZS": {
+                "name": "school_completion_rate_primary_female",
+                "type": "FLOAT",
+            },
             "SE.XPD.TOTL.GD.ZS": {"name": "government_expenditure", "type": "FLOAT"},
         },
-        "rules": []
+        "rules": [],
     },
     "QualityOfLife": {
         "attributes": {
@@ -249,62 +273,78 @@ SCHEMA = {
             "Primary Key": {"name": "event_key", "type": "SERIAL PRIMARY KEY"},
             "Country Code": {"name": "country_code", "type": "INT  NOT NULL"},
             "Event Name": {"name": "name", "type": "VARCHAR NOT NULL"},
-            "Start date": {"name": "start_date", "type": "INT NOT NULL"},
-            "End date": {"name": "end_date", "type": "INT NOT NULL"},
+            "Start date": {"name": "start_date", "type": "SERIAL"},
+            "End date": {"name": "end_date", "type": "SERIAL"},
             "Deaths": {"name": "deaths", "type": "INT NOT NULL"},
         },
-        "rules": ["FOREIGN KEY(start_date) REFERENCES Month(month_key)", "FOREIGN KEY(end_date) REFERENCES Month(month_key)"],
+        "rules": [
+            "FOREIGN KEY(start_date) REFERENCES Month(month_key)",
+            "FOREIGN KEY(end_date) REFERENCES Month(month_key)",
+        ],
     },
-    # "WB_HNP": {
-    #     "attributes": {
-    #         "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
-    #         "Month Key": {"name": "month_key", "type": "SERIAL"},
-    #         "Country Key": {"name": "country_key", "type": "SERIAL"},
-    #         "Health Key": {"name": "health_key", "type": "SERIAL"},
-    #         "Population Key": {"name": "population_key", "type": "SERIAL"},
-    #         "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
-    #         "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"}
-    #         # TODO: more PFKs & measures
-    #     },
-    #     "rules": [
-    #         """
-    #         CONSTRAINT fk_month
-    #             FOREIGN KEY(month_key)
-    #                 REFERENCES Month(month_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_country
-    #             FOREIGN KEY(country_key)
-    #                 REFERENCES Country(country_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_health
-    #             FOREIGN KEY(health_key)
-    #                 REFERENCES Health(health_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_population
-    #             FOREIGN KEY(population_key)
-    #                 REFERENCES Population(population_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_qualityoflife
-    #             FOREIGN KEY(qualityoflife_key)
-    #                 REFERENCES QualityOfLife(qualityoflife_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_nutrition
-    #             FOREIGN KEY(nutrition_key)
-    #                 REFERENCES Nutrition(nutrition_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #     ],
-    # },
+    "WB_HNP": {
+        "attributes": {
+            "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
+            "Month Key": {"name": "month_key", "type": "SERIAL"},
+            "Country Key": {"name": "country_key", "type": "SERIAL"},
+            "Health Key": {"name": "health_key", "type": "SERIAL"},
+            "Population Key": {"name": "population_key", "type": "SERIAL"},
+            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
+            "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"},
+            "Education Key": {"name": "education_key", "type": "SERIAL"},
+            "Event Key": {"name": "event_key", "type": "SERIAL"},
+        },
+        "rules": [
+            """
+            CONSTRAINT fk_month
+                FOREIGN KEY(month_key)
+                    REFERENCES Month(month_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_country
+                FOREIGN KEY(country_key)
+                    REFERENCES Country(country_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_health
+                FOREIGN KEY(health_key)
+                    REFERENCES Health(health_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_population
+                FOREIGN KEY(population_key)
+                    REFERENCES Population(population_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_qualityoflife
+                FOREIGN KEY(qualityoflife_key)
+                    REFERENCES QualityOfLife(qualityoflife_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_nutrition
+                FOREIGN KEY(nutrition_key)
+                    REFERENCES Nutrition(nutrition_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_education
+                FOREIGN KEY(education_key)
+                    REFERENCES Education(education_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_event
+                FOREIGN KEY(event_key)
+                    REFERENCES Event(event_key)
+                        ON DELETE SET NULL
+            """,
+        ],
+    },
 }
 
 atr: str
