@@ -595,7 +595,6 @@ def write_fact_table():
         for row in reader:
             for i in range(int(row["start_date"]), int(row["end_date"]) + 1):
                 EVENT_DICT[int(row["country_code"])][i].add(row["event_key"])
-                EVENT_DICT[int(row["country_code"])][i].add(row["event_key"])
 
     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
         fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
