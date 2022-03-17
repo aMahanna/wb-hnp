@@ -21,9 +21,9 @@ dbname = os.environ.get("PGSQL_DBNAME")
 password = os.environ.get("PGSQL_PASSWORD")
 
 # See https://docs.microsoft.com/en-us/azure/postgresql/connect-python
-conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
+# conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
 
-logging.info(f"Connected to {host} - {dbname}")
+# logging.info(f"Connected to {host} - {dbname}")
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -119,16 +119,29 @@ SCHEMA = {
         },
         "rules": [],
     },
-    # TODO
-    # "Education": {
-    #     "attributes": {
-    #        "Primary Key": {
-    #             "name": "education_key",
-    #             "type": "SERIAL PRIMARY KEY",
-    #         },
-    #     },
-    #     "rules": ""
-    # },
+    "Education": {
+        "attributes": {
+            "Primary Key": {
+                "name": "education_key",
+                "type": "SERIAL PRIMARY KEY",
+            },
+            "SE.ADT.LITR.ZS": {"name": "literacy_rate_adult", "type": "FLOAT"},
+            "SE.ADT.LITR.MA.ZS": {"name": "literacy_rate_adult_male", "type": "FLOAT"},
+            "SE.ADT.LITR.FE.ZS": {"name": "literacy_rate_adult_female", "type": "FLOAT"},
+            "SE.PRM.ENRR": {"name": "school_enrollment_primary", "type": "FLOAT"},
+            "SE.PRM.ENRR.MA": {"name": "school_enrollment_primary_male", "type": "FLOAT"},
+            "SE.PRM.ENRR.FE": {"name": "school_enrollment_primary_female", "type": "FLOAT"},
+            "SE.SEC.ENRR": {"name": "school_enrollment_secondary", "type": "FLOAT"},
+            "SE.SEC.ENRR.MA": {"name": "school_enrollment_secondary_male", "type": "FLOAT"},
+            "SE.SEC.ENRR.FE": {"name": "school_enrollment_secondary_female", "type": "FLOAT"},
+            "SE.TER.ENRR": {"name": "school_enrollment_tertiary", "type": "FLOAT"},
+            "SE.PRM.CMPT.ZS": {"name": "school_completion_rate_primary", "type": "FLOAT"},
+            "SE.PRM.CMPT.MA.ZS": {"name": "school_completion_rate_primary_male", "type": "FLOAT"},
+            "SE.PRM.CMPT.FE.ZS": {"name": "school_completion_rate_primary_female", "type": "FLOAT"},
+            "SE.XPD.TOTL.GD.ZS": {"name": "government_expenditure", "type": "FLOAT"},
+        },
+        "rules": []
+    },
     "QualityOfLife": {
         "attributes": {
             "Primary Key": {"name": "qualityoflife_key", "type": "SERIAL PRIMARY KEY"},
@@ -231,6 +244,17 @@ SCHEMA = {
         },
         "rules": [],
     },
+    "Event": {
+        "attributes": {
+            "Primary Key": {"name": "event_key", "type": "SERIAL PRIMARY KEY"},
+            "Country Code": {"name": "country_code", "type": "INT  NOT NULL"},
+            "Event Name": {"name": "name", "type": "VARCHAR NOT NULL"},
+            "Start date": {"name": "start_date", "type": "INT NOT NULL"},
+            "End date": {"name": "end_date", "type": "INT NOT NULL"},
+            "Deaths": {"name": "deaths", "type": "INT NOT NULL"},
+        },
+        "rules": ["FOREIGN KEY(start_date) REFERENCES Month(month_key)", "FOREIGN KEY(end_date) REFERENCES Month(month_key)"],
+    },
     # "WB_HNP": {
     #     "attributes": {
     #         "Primary Key": {"name": "id", "type": "SERIAL PRIMARY KEY"},
@@ -301,6 +325,7 @@ with open(
     for row in readerStatsData:
         if row["Indicator Code"] in indicators:
             statsData.append(row)
+
 
 logging.info(f"Indicator Count: {len(indicators)}")
 logging.info(f"StatsData Row Count: {len(statsData)}")

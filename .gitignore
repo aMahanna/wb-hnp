@@ -116,3 +116,4 @@ localdata/
 adbdgl_adapter/version.py
 
 .vscode
+*.xltx

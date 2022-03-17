@@ -453,17 +453,117 @@ def write_nutrition():
 
                 nutrition_key += 1
 
+def write_education():
+    logging.info("Executing: Write Education")
+    EDUCATION_ATRS = SCHEMA["Education"]["attributes"]
+
+    with open(f"{dir_path}/../csv/tables/stage/Education.csv", "w", newline="") as outfile:
+        attributes = [atr["name"] for atr in EDUCATION_ATRS.values()]
+        fieldnames = ["year_key", "country_key"] + attributes
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        countryDict = {code: {"years": {}} for code in COUNTRY_MAP.keys()}
+
+        for row in statsData:
+            if row["Indicator Code"] not in EDUCATION_ATRS.keys():
+                continue
+
+            code = row["Country Code"]
+            country = countryDict[code]
+            for i in range(2005, 2021):
+                year = str(i)
+                if year not in country["years"]:
+                    country["years"][year] = {}
+
+                ind_name = EDUCATION_ATRS[row["Indicator Code"]]["name"]
+                ind_value = row[year]
+
+                country["years"][year][ind_name] = ind_value
+
+        education_key = 1
+        for code, country in countryDict.items():
+            for j in range(2005, 2021):
+                year = str(j)
+                country_key = COUNTRY_MAP[code]
+                writer.writerow(
+                    {
+                        **{
+                            "year_key": year,
+                            "country_key": country_key,
+                            "education_key": education_key,
+                        },
+                        **{
+                            atr["name"]: country["years"][year][atr["name"]]
+                            for atr in EDUCATION_ATRS.values()
+                            if atr["name"] != "education_key"
+                        },
+                    }
+                )
+
+                education_key += 1
+
+
+def write_event():
+    def calculate_date_key(date):
+        MONTHS_MAP = {
+            "January": 1,
+            "February": 2,
+            "March": 3,
+            "April": 4,
+            "May": 5,
+            "June": 6,
+            "July": 7,
+            "August": 8,
+            "September": 9,
+            "October": 10,
+            "November": 11,
+            "December": 12,
+        }
+        date = date.split(" ")
+        month, year = date[0], date[2]
+        return (int(year)-2005)+(MONTHS_MAP[month])
+
+    COUNTRY_ABR_MAP = {'Canada': "CAN", 'US': "USA", 'Mexico': "MEX", 'Iran': "IRN",
+                       'China': "CHN", 'Lebanon': "LBN", 'Ukraine': "UKR", 'Vietnam': "VNM", 'India': "IND"}
+
+    logging.info("Executing: Write Event")
+    EVENT_ATRS = SCHEMA["Event"]["attributes"]
+
+    with open(f"{dir_path}/../csv/tables/stage/Event.csv", "w", newline="") as outfile:
+        attributes = [atr["name"] for atr in EVENT_ATRS.values()]
+        writer = csv.DictWriter(outfile, fieldnames=attributes)
+        writer.writeheader()
+
+        with open(f"{dir_path}/../csv/attributes/country_event_data.csv", newline="", mode="r", encoding="utf-8-sig",) as eventDataCSV:
+            readerEventData = csv.DictReader(eventDataCSV)
+
+            event_key = 1
+            for row in readerEventData:
+                writer.writerow(
+                    {
+                        "event_key": event_key,
+                        "country_code": COUNTRY_MAP[COUNTRY_ABR_MAP[row["Country"]]],
+                        "name": row["Name"],
+                        "start_date": calculate_date_key(row["Start Date"]),
+                        "end_date": calculate_date_key(row["End Date"]),
+                        "deaths": row["Deaths"],
+                    }
+                )
+
+                event_key += 1
+
 
 # TODO: Data Staging, dump into CSV files
 def main():
-    write_month()
-    write_country()
-    # write_education()
-    write_health()
-    write_nutrition()
-    write_qualityoflife()
-    write_population()
-    # write_event()
+    # write_month()
+    # write_country()
+    write_education()
+    # write_health()
+    # write_nutrition()
+    # write_qualityoflife()
+    # write_population()
+    write_event()
     # write_fact_table()
     logging.info("Success!")
 
