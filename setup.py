@@ -9,8 +9,8 @@ setup(
     license="MIT License",
     packages=["src"],
     install_requires=[
-        "psycopg2-binary==2.9.3",
-        "python-dotenv==0.19.0",
-        "pandas==1.4.1"
+        "psycopg2-binary",
+        "python-dotenv",
+        "pandas"
     ],
 )
