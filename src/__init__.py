@@ -271,7 +271,6 @@ SCHEMA = {
     "Event": {
         "attributes": {
             "Primary Key": {"name": "event_key", "type": "SERIAL PRIMARY KEY"},
-            "Country Code": {"name": "country_code", "type": "INT  NOT NULL"},
             "Event Name": {"name": "name", "type": "VARCHAR NOT NULL"},
             "Start date": {"name": "start_date", "type": "SERIAL"},
             "End date": {"name": "end_date", "type": "SERIAL"},

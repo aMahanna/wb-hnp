@@ -546,7 +546,8 @@ def write_event():
 
     with open(f"{dir_path}/../csv/tables/stage/Event.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in EVENT_ATRS.values()]
-        writer = csv.DictWriter(outfile, fieldnames=attributes)
+        fieldnames = ["country_code"] + attributes
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
         with open(
