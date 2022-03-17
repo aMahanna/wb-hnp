@@ -1,7 +1,7 @@
-from collections import defaultdict
 import csv
 import json
 import logging
+from collections import defaultdict
 from math import floor
 
 from src import SCHEMA, dir_path, statsData
