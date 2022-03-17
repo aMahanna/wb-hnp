@@ -129,7 +129,7 @@ def write_country():
         f"{dir_path}/../csv/tables/stage/Country.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in COUNTRY_ATRS.values()]
-        fieldnames = ["year_key"] + attributes
+        fieldnames = ["year_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -180,7 +180,7 @@ def write_country():
                 year = str(j)
                 writer.writerow(
                     {
-                        **{"year_key": year, "country_key": country_key},
+                        **{"year_code": year, "country_key": country_key},
                         **{
                             atr["name"]: country.get(atr["name"], None)
                             or country["years"][year][atr["name"]]
@@ -201,7 +201,7 @@ def write_population():
         f"{dir_path}/../csv/tables/stage/Population.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in POP_ATRS.values()]
-        fieldnames = ["year_key", "country_key"] + attributes
+        fieldnames = ["year_code", "country_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -231,12 +231,12 @@ def write_population():
         for code, country in countryDict.items():
             for j in range(2005, 2021):
                 year = str(j)
-                country_key = COUNTRY_MAP[code]
+                year_code = COUNTRY_MAP[code]
                 writer.writerow(
                     {
                         **{
-                            "year_key": year,
-                            "country_key": country_key,
+                            "year_code": year,
+                            "country_code": year_code,
                             "population_key": population_key,
                         },
                         **{
@@ -258,7 +258,7 @@ def write_qualityoflife():
         f"{dir_path}/../csv/tables/stage/QualityOfLife.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in QOL_ATRS.values()]
-        fieldnames = ["year_key", "country_key"] + attributes
+        fieldnames = ["year_code", "country_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -301,12 +301,12 @@ def write_qualityoflife():
         for code, country in countryDict.items():
             for j in range(2005, 2021):
                 year = str(j)
-                country_key = COUNTRY_MAP[code]
+                country_code = COUNTRY_MAP[code]
                 writer.writerow(
                     {
                         **{
-                            "year_key": year,
-                            "country_key": country_key,
+                            "year_code": year,
+                            "country_code": country_code,
                             "qualityoflife_key": qualityoflife_key,
                         },
                         **{
@@ -326,7 +326,7 @@ def write_health():
 
     with open(f"{dir_path}/../csv/tables/stage/Health.csv", "w", newline="") as outfile:
         attributes = [atr["name"] for atr in HEALTH_ATRS.values()]
-        fieldnames = ["year_key", "country_key"] + attributes
+        fieldnames = ["year_code", "country_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -370,12 +370,12 @@ def write_health():
         for code, country in countryDict.items():
             for j in range(2005, 2021):
                 year = str(j)
-                country_key = COUNTRY_MAP[code]
+                country_code = COUNTRY_MAP[code]
                 writer.writerow(
                     {
                         **{
-                            "year_key": year,
-                            "country_key": country_key,
+                            "year_code": year,
+                            "country_code": country_code,
                             "health_key": health_key,
                         },
                         **{
@@ -417,7 +417,7 @@ def write_nutrition():
         f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in NUT_ATRS.values()]
-        fieldnames = ["year_key", "country_key"] + attributes
+        fieldnames = ["year_code", "country_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -431,17 +431,17 @@ def write_nutrition():
             for j in range(2005, 2021):
                 year = str(j)
                 if country not in countryNames:
-                    country_key = countryNames.index(
+                    country_code = countryNames.index(
                         indicator_country_to_real_country[country]
                     )
                 else:
-                    country_key = countryNames.index(country) + 1
+                    country_code = countryNames.index(country) + 1
 
                 writer.writerow(
                     {
                         **{
-                            "year_key": year,
-                            "country_key": country_key,
+                            "year_code": year,
+                            "country_code": country_code,
                             "nutrition_key": nutrition_key,
                         },
                         **{

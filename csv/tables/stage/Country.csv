@@ -1,4 +1,4 @@
-year_key,country_key,name,code,region,currency,income_group,population,population_growth,crude_birth_rate,crude_death_rate,labor_force,life_expectancy,life_expectancy_male,life_expectancy_female
+year_code,country_key,name,code,region,currency,income_group,population,population_growth,crude_birth_rate,crude_death_rate,labor_force,life_expectancy,life_expectancy_male,life_expectancy_female
 2005,1,Canada,CAN,North America,Canadian dollar,High income,32243753,0.944466927,10.6,7.1,17697127,80.19268293,77.9,82.6
 2006,2,Canada,CAN,North America,Canadian dollar,High income,32571174,1.010334503,10.9,7,17912331,80.34390244,78.1,82.7
 2007,3,Canada,CAN,North America,Canadian dollar,High income,32889025,0.971135141,11.2,7.1,18276042,80.54390244,78.3,82.9
