@@ -282,69 +282,69 @@ SCHEMA = {
             "FOREIGN KEY(end_date) REFERENCES Month(month_key)",
         ],
     },
-    # "WB_HNP": {
-    #     "attributes": {
-    #         "Primary Key": {"name": "fact_key", "type": "SERIAL PRIMARY KEY"},
-    #         "Month Key": {"name": "month_key", "type": "SERIAL"},
-    #         "Country Key": {"name": "country_key", "type": "SERIAL"},
-    #         "Health Key": {"name": "health_key", "type": "SERIAL"},
-    #         "Population Key": {"name": "population_key", "type": "SERIAL"},
-    #         "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
-    #         "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"},
-    #         "Education Key": {"name": "education_key", "type": "SERIAL"},
-    #         "Event Key": {"name": "event_key", "type": "SERIAL"},
-    #     },
-    #     "rules": [
-    #         """
-    #         CONSTRAINT fk_month
-    #             FOREIGN KEY(month_key)
-    #                 REFERENCES Month(month_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_country
-    #             FOREIGN KEY(country_key)
-    #                 REFERENCES Country(country_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_health
-    #             FOREIGN KEY(health_key)
-    #                 REFERENCES Health(health_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_population
-    #             FOREIGN KEY(population_key)
-    #                 REFERENCES Population(population_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_qualityoflife
-    #             FOREIGN KEY(qualityoflife_key)
-    #                 REFERENCES QualityOfLife(qualityoflife_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_nutrition
-    #             FOREIGN KEY(nutrition_key)
-    #                 REFERENCES Nutrition(nutrition_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_education
-    #             FOREIGN KEY(education_key)
-    #                 REFERENCES Education(education_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #         """
-    #         CONSTRAINT fk_event
-    #             FOREIGN KEY(event_key)
-    #                 REFERENCES Event(event_key)
-    #                     ON DELETE SET NULL
-    #         """,
-    #     ],
-    # },
+    "WB_HNP": {
+        "attributes": {
+            "Primary Key": {"name": "fact_key", "type": "SERIAL PRIMARY KEY"},
+            "Month Key": {"name": "month_key", "type": "SERIAL"},
+            "Country Key": {"name": "country_key", "type": "SERIAL"},
+            "Health Key": {"name": "health_key", "type": "SERIAL"},
+            "Population Key": {"name": "population_key", "type": "SERIAL"},
+            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
+            "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"},
+            "Education Key": {"name": "education_key", "type": "SERIAL"},
+            # "Event Key": {"name": "event_key", "type": "SERIAL"},
+        },
+        "rules": [
+            """
+            CONSTRAINT fk_month
+                FOREIGN KEY(month_key)
+                    REFERENCES Month(month_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_country
+                FOREIGN KEY(country_key)
+                    REFERENCES Country(country_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_health
+                FOREIGN KEY(health_key)
+                    REFERENCES Health(health_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_population
+                FOREIGN KEY(population_key)
+                    REFERENCES Population(population_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_qualityoflife
+                FOREIGN KEY(qualityoflife_key)
+                    REFERENCES QualityOfLife(qualityoflife_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_nutrition
+                FOREIGN KEY(nutrition_key)
+                    REFERENCES Nutrition(nutrition_key)
+                        ON DELETE SET NULL
+            """,
+            """
+            CONSTRAINT fk_education
+                FOREIGN KEY(education_key)
+                    REFERENCES Education(education_key)
+                        ON DELETE SET NULL
+            """,
+            # """
+            # CONSTRAINT fk_event
+            #     FOREIGN KEY(event_key)
+            #         REFERENCES Event(event_key)
+            #             ON DELETE SET NULL
+            # """,
+        ],
+    },
 }
 
 atr: str

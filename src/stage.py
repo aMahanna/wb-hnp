@@ -573,45 +573,51 @@ def write_event():
                 event_key += 1
 
 
-# def write_fact_table():
-#     logging.info("Executing: Write Fact Table")
-#     FACT_SCHEMA = SCHEMA["WB_HNP"]["attributes"]
+def write_fact_table():
+    logging.info("Executing: Write Fact Table")
+    FACT_SCHEMA = SCHEMA["WB_HNP"]["attributes"]
 
-#     DATA_DICT = dict()
-#     for name in SCHEMA.keys():
-#         if name == "WB_HNP":
-#             continue
+    # DATA_DICT = dict()
+    # for name in SCHEMA.keys():
+    #     if name == "WB_HNP":
+    #         continue
 
-#         with open(f"{dir_path}/../csv/tables/stage/{name}.csv") as csvData:
-#             next(csvData)
-#             file_read = csv.reader(csvData)
-#             DATA_DICT[name] = list(file_read)
-#             print(len(DATA_DICT[name]))
+    #     with open(f"{dir_path}/../csv/tables/stage/{name}.csv") as csvData:
+    #         next(csvData)
+    #         file_read = csv.reader(csvData)
+    #         DATA_DICT[name] = list(file_read)
 
+    with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
+        fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
 
-#     print(DATA_DICT['Country'][0])
+        fact_key = 1
+        dimension_key = 1
+        for _ in range(1, 10):
+            month_key = 1
+            for _ in range(2005, 2021):
+                for _ in range(1, 13):
+                    for event in []:  # TODO
+                        event_key = event[month_key]  # TODO
+                        writer.writerow(
+                            {
+                                "fact_key": fact_key,
+                                "month_key": dimension_key,
+                                "country_key": dimension_key,
+                                "education_key": dimension_key,
+                                "health_key": dimension_key,
+                                "nutrition_key": dimension_key,
+                                "population_key": dimension_key,
+                                "qualityoflife_key": dimension_key,
+                                "event_key": event_key,  # TODO
+                            }
+                        )
 
-#     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
-#         fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
-#         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-#         writer.writeheader()
+                    fact_key += 1
+                    month_key += 1
 
-#         data_index = 0
-#         fact_key = 1
-#         for country_index in range(1, 10):
-#             for year_index in range(2005, 2021):
-#                 for month_index in range(1, 13):
-#                     writer.writerow(
-#                         {
-#                             "fact_key": fact_key,
-#                             "month_key": ((int(year_index) - 2005) * 12) + month_index
-#                             "country_key":
-#                         }
-#                     )
-
-#                     fact_key += 1
-
-#                 data_index += 1
+                dimension_key += 1
 
 
 # TODO: Data Staging, dump into CSV files
@@ -624,7 +630,7 @@ def main():
     write_qualityoflife()
     write_population()
     write_event()
-    # write_fact_table()
+    write_fact_table()
     logging.info("Success!")
 
 
