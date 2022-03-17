@@ -603,7 +603,7 @@ def write_fact_table():
                             writer.writerow(
                                 {
                                     "fact_key": fact_key,
-                                    "month_key": dimension_key,
+                                    "month_key": month_key,
                                     "country_key": dimension_key,
                                     "education_key": dimension_key,
                                     "health_key": dimension_key,
@@ -619,7 +619,7 @@ def write_fact_table():
                         writer.writerow(
                             {
                                 "fact_key": fact_key,
-                                "month_key": dimension_key,
+                                "month_key": month_key,
                                 "country_key": dimension_key,
                                 "education_key": dimension_key,
                                 "health_key": dimension_key,
