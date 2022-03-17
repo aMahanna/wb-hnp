@@ -17,8 +17,12 @@ def main():
             data["event_key"] = data["event_key"].astype("Int64")
 
         try:
-            data.drop("year_code", inplace=True, axis=1)
             data.drop("country_code", inplace=True, axis=1)
+        except:
+            pass
+
+        try:
+            data.drop("year_code", inplace=True, axis=1)
         except:
             pass
 
