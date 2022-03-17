@@ -1,3 +1,4 @@
+from collections import defaultdict
 import csv
 import json
 import logging
@@ -462,7 +463,7 @@ def write_education():
         f"{dir_path}/../csv/tables/stage/Education.csv", "w", newline=""
     ) as outfile:
         attributes = [atr["name"] for atr in EDUCATION_ATRS.values()]
-        fieldnames = ["year_key", "country_key"] + attributes
+        fieldnames = ["year_code", "country_code"] + attributes
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -488,12 +489,12 @@ def write_education():
         for code, country in countryDict.items():
             for j in range(2005, 2021):
                 year = str(j)
-                country_key = COUNTRY_MAP[code]
+                country_code = COUNTRY_MAP[code]
                 writer.writerow(
                     {
                         **{
-                            "year_key": year,
-                            "country_key": country_key,
+                            "year_code": year,
+                            "country_code": country_code,
                             "education_key": education_key,
                         },
                         **{
@@ -525,7 +526,8 @@ def write_event():
         }
         date = date.split(" ")
         month, year = date[0], date[2]
-        return ((int(year) - 2005) * 12) + (MONTHS_MAP[month])
+        month_key = ((int(year) - 2005) * 12) + (MONTHS_MAP[month])
+        return max(min(month_key, 192), 1)
 
     COUNTRY_ABR_MAP = {
         "Canada": "CAN",
@@ -571,13 +573,54 @@ def write_event():
                 event_key += 1
 
 
+# def write_fact_table():
+#     logging.info("Executing: Write Fact Table")
+#     FACT_SCHEMA = SCHEMA["WB_HNP"]["attributes"]
+
+#     DATA_DICT = dict()
+#     for name in SCHEMA.keys():
+#         if name == "WB_HNP":
+#             continue
+
+#         with open(f"{dir_path}/../csv/tables/stage/{name}.csv") as csvData:
+#             next(csvData)
+#             file_read = csv.reader(csvData)
+#             DATA_DICT[name] = list(file_read)
+#             print(len(DATA_DICT[name]))
+
+
+#     print(DATA_DICT['Country'][0])
+
+#     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
+#         fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
+#         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+#         writer.writeheader()
+
+#         data_index = 0
+#         fact_key = 1
+#         for country_index in range(1, 10):
+#             for year_index in range(2005, 2021):
+#                 for month_index in range(1, 13):
+#                     writer.writerow(
+#                         {
+#                             "fact_key": fact_key,
+#                             "month_key": ((int(year_index) - 2005) * 12) + month_index
+#                             "country_key":
+#                         }
+#                     )
+
+#                     fact_key += 1
+
+#                 data_index += 1
+
+
 # TODO: Data Staging, dump into CSV files
 def main():
     write_month()
     write_country()
     write_education()
     write_health()
-    write_nutrition()
+    # write_nutrition()
     write_qualityoflife()
     write_population()
     write_event()

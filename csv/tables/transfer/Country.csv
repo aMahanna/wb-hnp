@@ -1,0 +1,145 @@
+country_key,name,code,region,currency,income_group,population,population_growth,crude_birth_rate,crude_death_rate,labor_force,life_expectancy,life_expectancy_male,life_expectancy_female
+1,Canada,CAN,North America,Canadian dollar,High income,32243753,0.944466927,10.6,7.1,17697127,80.19268293,77.9,82.6
+2,Canada,CAN,North America,Canadian dollar,High income,32571174,1.010334503,10.9,7.0,17912331,80.34390244,78.1,82.7
+3,Canada,CAN,North America,Canadian dollar,High income,32889025,0.971135141,11.2,7.1,18276042,80.54390244,78.3,82.9
+4,Canada,CAN,North America,Canadian dollar,High income,33247118,1.082907116,11.3,7.2,18576392,80.69512195,78.5,83.0
+5,Canada,CAN,North America,Canadian dollar,High income,33628895,1.141758099,11.3,7.1,18712292,80.99512195,78.8,83.3
+6,Canada,CAN,North America,Canadian dollar,High income,34004889,1.111864075,11.1,7.0,18918726,81.24634146,79.1,83.5
+7,Canada,CAN,North America,Canadian dollar,High income,34339328,0.978697787,11.0,7.1,19061288,81.44878049,79.4,83.6
+8,Canada,CAN,North America,Canadian dollar,High income,34714222,1.085817263,11.0,7.1,19250224,81.64878049,79.6,83.8
+9,Canada,CAN,North America,Canadian dollar,High income,35082954,1.056591259,10.8,7.2,19475966,81.74878049,79.7,83.9
+10,Canada,CAN,North America,Canadian dollar,High income,35437435,1.005337579,10.8,7.3,19560730,81.8,79.8,83.9
+11,Canada,CAN,North America,Canadian dollar,High income,35702908,0.746339478,10.7,7.4,19678725,81.9,79.9,84.0
+12,Canada,CAN,North America,Canadian dollar,High income,36109487,1.132348655,10.6,7.4,19888520,81.9,79.9,84.0
+13,Canada,CAN,North America,Canadian dollar,High income,36545295,1.199682154,10.3,7.5,20166002,81.9,79.9,84.0
+14,Canada,CAN,North America,Canadian dollar,High income,37065178,1.412548033,10.1,7.7,20349922,82.04878049,80.0,84.2
+15,Canada,CAN,North America,Canadian dollar,High income,37593384,1.4150147,9.9,7.6,20743970,82.04878049,80.0,84.2
+16,Canada,CAN,North America,Canadian dollar,High income,38005238,1.089591487,9.9,7.6,20457473,82.04878049,80.0,84.2
+17,United States,USA,North America,U.S. dollar,High income,295516599,0.921713167,14.0,8.3,152069621,77.48780488,75.0,80.1
+18,United States,USA,North America,U.S. dollar,High income,298379912,0.964253917,14.3,8.1,153926382,77.68780488,75.2,80.3
+19,United States,USA,North America,U.S. dollar,High income,301231207,0.951055243,14.3,8.0,155217714,77.98780488,75.5,80.6
+20,United States,USA,North America,U.S. dollar,High income,304093966,0.945865287,14.0,8.1,157018957,78.03902439,75.6,80.6
+21,United States,USA,North America,U.S. dollar,High income,306771529,0.876651299,13.5,7.9,157119037,78.3902439,76.0,80.9
+22,United States,USA,North America,U.S. dollar,High income,309327143,0.829616675,13.0,7.995,156908693,78.54146341,76.2,81.0
+23,United States,USA,North America,U.S. dollar,High income,311583481,0.726786705,12.7,8.073,156988739,78.64146341,76.3,81.1
+24,United States,USA,North America,U.S. dollar,High income,313877662,0.733599941,12.6,8.102,158669839,78.74146341,76.4,81.2
+25,United States,USA,North America,U.S. dollar,High income,316059947,0.692860277,12.4,8.215,158786446,78.74146341,76.4,81.2
+26,United States,USA,North America,U.S. dollar,High income,318386329,0.73336152,12.5,8.237,159585089,78.84146341,76.5,81.3
+27,United States,USA,North America,U.S. dollar,High income,320738994,0.736217309,12.4,8.44,160656132,78.6902439,76.3,81.2
+28,United States,USA,North America,U.S. dollar,High income,323071755,0.724676067,12.2,8.493,162618460,78.53902439,76.1,81.1
+29,United States,USA,North America,U.S. dollar,High income,325122128,0.632643995,11.8,8.638,164326552,78.53902439,76.1,81.1
+30,United States,USA,North America,U.S. dollar,High income,326838199,0.526435396,11.6,8.678,165551383,78.63902439,76.2,81.2
+31,United States,USA,North America,U.S. dollar,High income,328329953,0.455381286,11.4,8.7,167329067,78.78780488,76.3,81.4
+32,United States,USA,North America,U.S. dollar,High income,329484123,0.350911063,11.4,8.7,165163504,78.78780488,76.3,81.4
+33,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,106005199,1.415816979,21.741,4.792,43772747,75.3,72.575,77.999
+34,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,107560155,1.456213238,21.343,4.869,45215867,75.296,72.532,78.035
+35,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,109170503,1.486063532,20.973,4.961,46262334,75.255,72.447,78.039
+36,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,110815272,1.495369098,20.635,5.06,47054559,75.194,72.342,78.026
+37,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,112463886,1.476755803,20.327,5.163,48003205,75.128,72.233,78.004
+38,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,114092961,1.438140669,20.042,5.266,48835133,75.065,72.135,77.979
+39,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,115695468,1.39478997,19.766,5.369,49848252,75.011,72.056,77.952
+40,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,117274156,1.355294426,19.488,5.471,51365736,74.966,71.997,77.922
+41,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,118827158,1.315557607,19.198,5.572,52135926,74.93,71.958,77.89
+42,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,120355137,1.277686366,18.892,5.67,52543348,74.908,71.943,77.86
+43,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,121858251,1.241164502,18.573,5.763,53579106,74.904,71.954,77.837
+44,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,123333379,1.203259506,18.245,5.851,54395105,74.917,71.99,77.826
+45,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,124777326,1.16396695,17.918,5.933,55135552,74.947,72.046,77.827
+46,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,126190782,1.126414791,17.602,6.01,56255842,74.992,72.118,77.844
+47,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,127575529,1.091366887,17.297,6.082,57839046,75.054,72.203,77.879
+48,Mexico,MEX,Latin America & Caribbean,Mexican peso,Upper middle income,128932753,1.058240034,17.297,6.082,53978977,75.054,72.203,77.879
+49,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,69762345,1.169424055,17.401,5.041,24209910,71.917,70.438,73.502
+50,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,70554756,1.129469492,17.52,5.039,24201525,72.257,70.698,73.934
+51,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,71336476,1.101869225,17.663,5.025,24164868,72.626,71.03,74.344
+52,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,72120608,1.093204724,17.823,4.996,23406695,73.027,71.443,74.73
+53,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,72924833,1.108939703,17.986,4.955,24064901,73.457,71.934,75.092
+54,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,73762519,1.142150424,18.154,4.905,24035523,73.905,72.476,75.431
+55,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,74634959,1.175828678,18.335,4.857,24155493,74.352,73.035,75.753
+56,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,75539881,1.205172521,18.533,4.82,24266673,74.776,73.566,76.06
+57,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,76481963,1.23941933,18.739,4.799,24357612,75.162,74.038,76.357
+58,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,77465769,1.278121321,18.93,4.795,24418459,75.502,74.435,76.645
+59,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,78492208,1.316321025,19.066,4.805,25357014,75.796,74.755,76.922
+60,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,79563991,1.356225741,19.102,4.821,26558433,76.047,75.007,77.187
+61,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,80673888,1.385333802,19.011,4.835,27421048,76.271,75.217,77.436
+62,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,81800204,1.386478335,18.783,4.843,27769359,76.479,75.409,77.668
+63,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,82913893,1.352289806,18.42,4.842,28212245,76.677,75.593,77.885
+64,Iran,IRN,Middle East & North Africa,Iranian rial,Lower middle income,83992953,1.293026691,18.42,4.842,26813322,76.677,75.593,77.885
+65,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1303720000,0.58812499,12.4,6.51,763719669,72.985,71.297,74.845
+66,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1311020000,0.558374367,12.09,6.81,768097158,73.271,71.551,75.17
+67,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1317885000,0.522271866,12.1,6.93,771363502,73.553,71.788,75.508
+68,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1324655000,0.512386932,12.14,7.06,773625799,73.835,72.017,75.855
+69,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1331260000,0.497381401,12.13,7.08,774904798,74.119,72.244,76.208
+70,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1337705000,0.482959689,11.9,7.11,775372805,74.409,72.476,76.566
+71,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1345035000,0.546457595,11.93,7.14,778868116,74.708,72.72,76.926
+72,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1354190000,0.678345459,12.1,7.15,783086506,75.013,72.976,77.284
+73,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1363240000,0.666072978,12.08,7.16,786784708,75.321,73.242,77.635
+74,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1371860000,0.63032639,12.37,7.16,789526606,75.629,73.517,77.972
+75,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1379860000,0.581456147,12.07,7.11,791293488,75.928,73.793,78.288
+76,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1387790000,0.573050906,12.95,7.09,792205319,76.21,74.061,78.574
+77,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1396215000,0.605245013,12.43,7.11,792758868,76.47,74.315,78.828
+78,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1402760000,0.467672053,10.94,7.13,791646536,76.704,74.549,79.051
+79,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1407745000,0.35474089,10.5,7.1,789607035,76.912,74.761,79.244
+80,China,CHN,East Asia & Pacific,Chinese yuan,Upper middle income,1410929362,0.225947587,10.5,7.1,775799016,76.912,74.761,79.244
+81,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4698761,2.792198518,16.579,4.051,1556549,76.865,75.081,78.72
+82,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4759760,1.289838986,16.105,3.984,1597997,77.26,75.484,79.153
+83,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4767347,0.159271888,15.858,3.936,1624066,77.609,75.844,79.534
+84,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4764745,-0.054594523,15.825,3.907,1633407,77.911,76.152,79.86
+85,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4813026,1.008197188,15.982,3.895,1657121,78.161,76.405,80.127
+86,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,4953064,2.868038264,16.281,3.9,1710047,78.36,76.6,80.334
+87,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,5202022,4.904102118,16.662,3.92,1799653,78.507,76.739,80.483
+88,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,5537620,6.251740941,17.049,3.952,1912060,78.611,76.833,80.586
+89,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,5913016,6.559121717,17.38,3.995,2028256,78.683,76.896,80.654
+90,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6261046,5.719124107,17.617,4.048,2133652,78.732,76.937,80.699
+91,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6532681,4.247016184,17.737,4.109,2221024,78.768,76.967,80.731
+92,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6714281,2.741932488,17.744,4.181,2296526,78.8,76.996,80.758
+93,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6819373,1.553078162,17.67,4.263,2348425,78.833,77.031,80.786
+94,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6859408,0.585360849,17.545,4.356,2387681,78.875,77.076,80.821
+95,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6855709,-0.053940482,17.377,4.457,2423712,78.93,77.14,80.869
+96,Lebanon,LBN,Middle East & North Africa,Lebanese pound,Upper middle income,6825442,-0.442463494,17.377,4.457,2317840,78.93,77.14,80.869
+97,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,47105171,-0.732800944,9.0,16.6,22167507,67.95682927,62.23,73.97
+98,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46787786,-0.676059673,9.8,16.2,22043101,68.07756098,62.38,74.06
+99,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46509355,-0.59687108,10.2,16.4,21924436,68.22219512,62.51,74.22
+100,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46258189,-0.541496741,11.0,16.3,21813766,68.25146341,62.51,74.28
+101,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,46053331,-0.443841324,11.1,15.3,21744285,69.19,63.79,74.86
+102,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45870741,-0.397263168,10.8,15.2,21676892,70.26536585,65.28,75.5
+103,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45706086,-0.359600093,11.0,14.5,21642068,70.80926829,65.98,75.88
+104,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45593342,-0.246976481,11.4,14.5,21425570,70.94414634,66.11,76.02
+105,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45489648,-0.22769135,11.1,14.6,21583163,71.1595122,66.34,76.22
+106,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45272155,-0.479262,10.8,14.7,20951080,71.18658537,66.25,76.37
+107,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45154036,-0.26124968,10.7,14.9,20952135,71.1895122,66.37,76.25
+108,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,45004673,-0.331333796,10.3,14.7,20764636,71.47634146,66.73,76.46
+109,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44831135,-0.386345311,9.4,14.5,20621915,71.78097561,67.02,76.78
+110,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44622518,-0.466425621,8.7,14.8,20417459,71.58268293,66.69,76.72
+111,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44386203,-0.53099416,8.1,14.7,20207728,71.82731707,66.92,76.98
+112,Ukraine,UKR,Europe & Central Asia,Ukrainian hryvnia,Lower middle income,44134693,-0.568251539,8.1,14.7,19461889,71.82731707,66.92,76.98
+113,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,83832662,0.922551594,16.805,5.651,46598033,74.092,69.722,78.425
+114,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,84617545,0.931893993,16.903,5.664,47441387,74.295,70.005,78.532
+115,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,85419588,0.943380936,17.017,5.686,48338674,74.474,70.255,78.631
+116,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,86243424,0.959836735,17.129,5.718,49293960,74.625,70.46,78.721
+117,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,87092250,0.979409219,17.221,5.759,50211128,74.745,70.616,78.805
+118,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,87967655,1.000128838,17.282,5.81,51254211,74.837,70.725,78.883
+119,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,88871384,1.022101084,17.316,5.867,52143659,74.904,70.796,78.957
+120,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,89801926,1.04162218,17.331,5.93,52979510,74.958,70.845,79.027
+121,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,90752593,1.0530623,17.333,5.994,54292342,75.006,70.887,79.094
+122,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,91713850,1.053635811,17.315,6.06,54997363,75.056,70.931,79.159
+123,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,92677082,1.044781055,17.259,6.126,55604625,75.11,70.984,79.226
+124,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,93640435,1.034107367,17.15,6.19,55860308,75.172,71.049,79.294
+125,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,94600643,1.020198501,16.979,6.253,56468715,75.241,71.124,79.366
+126,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,95545959,0.994310472,16.745,6.317,57028658,75.317,71.207,79.442
+127,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,96462108,0.954289022,16.454,6.38,57307619,75.4,71.301,79.523
+128,Vietnam,VNM,East Asia & Pacific,Vietnamese dong,Lower middle income,97338583,0.904517906,16.454,6.38,56542377,75.4,71.301,79.523
+129,India,IND,South Asia,Indian rupee,Lower middle income,1147609924,1.579709143,24.087,8.074,449085795,64.5,63.689,65.357
+130,India,IND,South Asia,Indian rupee,Lower middle income,1165486291,1.545696439,23.564,7.958,451850201,64.918,64.091,65.793
+131,India,IND,South Asia,Indian rupee,Lower middle income,1183209471,1.509221986,22.996,7.839,454681299,65.35,64.499,66.253
+132,India,IND,South Asia,Indian rupee,Lower middle income,1200669762,1.464889915,22.39,7.72,457434579,65.794,64.91,66.735
+133,India,IND,South Asia,Indian rupee,Lower middle income,1217726217,1.410582714,21.755,7.602,460259988,66.244,65.32,67.231
+134,India,IND,South Asia,Indian rupee,Lower middle income,1234281163,1.350338314,21.114,7.492,462951194,66.693,65.723,67.73
+135,India,IND,South Asia,Indian rupee,Lower middle income,1250287939,1.288512962,20.495,7.393,463753497,67.13,66.115,68.218
+136,India,IND,South Asia,Indian rupee,Lower middle income,1265780243,1.231484894,19.923,7.312,464760493,67.545,66.488,68.68
+137,India,IND,South Asia,Indian rupee,Lower middle income,1280842119,1.182904215,19.416,7.251,469135490,67.931,66.84,69.106
+138,India,IND,South Asia,Indian rupee,Lower middle income,1295600768,1.145673402,18.984,7.212,473313171,68.286,67.167,69.491
+139,India,IND,South Asia,Indian rupee,Lower middle income,1310152392,1.116895913,18.625,7.194,477296180,68.607,67.468,69.835
+140,India,IND,South Asia,Indian rupee,Lower middle income,1324517250,1.090459321,18.332,7.195,481187327,68.897,67.745,70.142
+141,India,IND,South Asia,Indian rupee,Lower middle income,1338676779,1.06335943,18.083,7.21,484539161,69.165,68.0,70.425
+142,India,IND,South Asia,Indian rupee,Lower middle income,1352642283,1.037827848,17.857,7.234,487631036,69.416,68.239,70.692
+143,India,IND,South Asia,Indian rupee,Lower middle income,1366417756,1.013261249,17.644,7.265,494732703,69.656,68.464,70.95
+144,India,IND,South Asia,Indian rupee,Lower middle income,1380004385,0.9894138,17.644,7.265,471688990,69.656,68.464,70.95

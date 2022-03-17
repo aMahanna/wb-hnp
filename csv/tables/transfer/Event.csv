@@ -1,0 +1,93 @@
+event_key,country_code,name,start_date,end_date,deaths
+1,1,Civil Marriage Act,7,7,0
+2,1,Great Recession in Canada,42,55,0
+3,1,Harper Government,14,131,0
+4,1,Quebec Student protests,86,93,0
+5,1,Lac-Mégantic rail disaster,103,103,47
+6,1,Trudeau Government,131,192,0
+7,1,Cannabis Act,162,162,0
+8,1,2018 United States–Canada tornado outbreak,165,165,1
+9,1,Toronto Raptors NBA Championship,173,174,0
+10,1,2020 Canadian pipeline and railway protests,181,183,0
+11,1,COVID-19,181,192,15606
+12,2,Bush presidency,1,49,0
+13,2,2005 Atlantic hurricane season,6,13,3912
+14,2,Great Recession in US,38,50,0
+15,2,US Involvement in Iraq,1,84,4507
+16,2,Obama presidency,49,145,0
+17,2,Boston Marathon bombing,100,100,3
+18,2,International military intervention against ISIS,114,192,71
+19,2,Trump presidency,145,192,0
+20,2,2017 Las Vegas shooting,154,154,61
+21,2,George Floyd Protests,185,192,9
+22,2,COVID-19,181,192,367000
+23,3,Drug War,24,192,41034
+24,3,2006 Elections and Protests,19,19,0
+25,3,Swine Flu,52,53,0
+26,3,2012 General Election,91,91,0
+27,3,Arrest of Los Zetas Leader,103,103,0
+28,3,Iguala Mass Kidnappings,117,117,6
+29,3,Puebla Earthquake,153,153,370
+30,3,Pipeline Explosion,169,169,137
+31,3,Salamanca Nightclub Shooting,171,171,15
+32,3,COVID-19,182,192,145000
+33,4,Iran-Saudi Proxy Conflict,1,192,0
+34,4,2009 Presidential Elections Protest,54,72,36
+35,4,Sanctions against Central Bank,85,85,0
+36,4,Involvement in the Syrian civil war,102,192,0
+37,4,Iranian intervention in Iraq,114,192,558
+38,4,JCPOA Sanctions Relief,133,133,0
+39,4,Resumption of sanctions,161,161,0
+40,4,Persian Gulf Crisis,173,192,23
+41,4,COVID-19,185,192,55000
+42,4,Assassination of General Qasem Soleimani,181,181,1
+43,5,Anti-Japanese Protests,4,4,0
+44,5,Sichuan Earthquake,41,41,69180
+45,5,2010 Yushu Earthquake,64,64,2698
+46,5,2010 China Floods,65,69,3189
+47,5,Belt and Road Initiative,97,192,0
+48,5,Xinjiang Internment Camps,145,192,0
+49,5,China-US Trade War,157,192,0
+50,5,HK Protests,171,186,5
+51,5,COVID-19,180,192,0
+52,5,Chinese Property Sector Crisis,181,192,0
+53,6,2006 Lebanon War,19,20,888
+54,6,2007 Lebanon Conflict,29,33,500
+55,6,2008 Lebanon Conflict,41,41,110
+56,6,Syrian Civil War Spillover,78,152,1000
+57,6,2011 Lebanese Protests,73,84,0
+58,6,Aoun presidency,142,192,0
+59,6,17 October Revolution,178,192,0
+60,6,Lebanese Liquidity Crisis,176,192,0
+61,6,COVID-19,182,192,16000
+62,6,2020 Beirut Explosion,188,188,0
+63,7,Orange Revolution,1,1,0
+64,7,Central Europe Floods,65,66,37
+65,7,Russia-Ukraine Gas Dispute,123,192,0
+66,7,Euromaiden,107,110,0
+67,7,Crimean Annexation,111,111,0
+68,7,War in Donbas,112,192,8000
+69,7,2014 Vrancea Earthquake,119,119,0
+70,7,Ukraine Airlines Flight 752,181,181,176
+71,7,COVID-19,183,192,18000
+72,7,Floods,186,186,0
+73,8,Typhoon Durian,23,24,85
+74,8,Joins WTO,25,25,0
+75,8,2 child policy enacted,43,43,0
+76,8,EEU Free Trade Agreement,125,125,0
+77,8,Tropical Storm Dianmu,140,140,17
+78,8,Marine Life Disaster,136,136,1
+79,8,CPTPP comes into effect,168,168,0
+80,8,COVID-19,181,192,35
+81,8,EU Free Trade Agreement,188,188,0
+82,8,2020 Central Vietnam Floods,190,191,189
+83,9,Kashmir Earthquake,10,10,86000
+84,9,Indo-US Nuke Deal,50,50,0
+85,9,Rural Job Scheme Launched,14,14,0
+86,9,Samjhauta Express Bombings,26,26,70
+87,9,Mumbai Attacks,47,47,175
+88,9,Homosexual Sex Decriminalized,55,55,0
+89,9,Ladakh Floods,68,68,255
+90,9,Delhi Gang Rape and Murder,96,96,1
+91,9,Delhi Riots,182,182,53
+92,9,COVID-19,181,192,150000
