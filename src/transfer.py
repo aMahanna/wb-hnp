@@ -12,11 +12,11 @@ def main():
         logging.info(f"Executing: COPY {name}")
 
         data = pd.read_csv(f"{dir_path}/../csv/tables/stage/{name}.csv")
-        if name not in ["Month", "WB_HNP"]:
-            data.drop("year_key", inplace=True, axis=1)
-
-            if name != "Country":
-                data.drop("country_key", inplace=True, axis=1)
+        try:
+            data.drop("year_code", inplace=True, axis=1)
+            data.drop("country_code", inplace=True, axis=1)
+        except:
+            pass
 
         data.to_csv(f"{dir_path}/../csv/tables/transfer/{name}.csv", index=False)
         with open(f"{dir_path}/../csv/tables/transfer/{name}.csv", "r") as f:
