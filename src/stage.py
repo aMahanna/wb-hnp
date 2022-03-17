@@ -577,15 +577,6 @@ def write_fact_table():
     logging.info("Executing: Write Fact Table")
     FACT_SCHEMA = SCHEMA["WB_HNP"]["attributes"]
 
-    # DATA_DICT = dict()
-    # for name in SCHEMA.keys():
-    #     if name == "WB_HNP":
-    #         continue
-    #     with open(f"{dir_path}/../csv/tables/stage/{name}.csv") as csvData:
-    #         next(csvData)
-    #         file_read = csv.reader(csvData)
-    #         DATA_DICT[name] = list(file_read)
-
     EVENT_DICT = {
         code: {month_key: set() for month_key in range(1, 193)}
         for code in COUNTRY_MAP.values()
@@ -594,7 +585,7 @@ def write_fact_table():
         reader = csv.DictReader(EventCSV)
         for row in reader:
             for i in range(int(row["start_date"]), int(row["end_date"]) + 1):
-                EVENT_DICT[int(row["country_code"])][i].add(row["event_key"])
+                EVENT_DICT[int(row["country_code"])][i].add(int(row["event_key"]))
 
     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
         fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
@@ -607,7 +598,24 @@ def write_fact_table():
             month_key = 1
             for _ in range(2005, 2021):
                 for _ in range(1, 13):
-                    for event_key in EVENT_DICT[country_code][month_key]:
+                    if EVENT_DICT[country_code][month_key]:
+                        for event_key in EVENT_DICT[country_code][month_key]:
+                            writer.writerow(
+                                {
+                                    "fact_key": fact_key,
+                                    "month_key": dimension_key,
+                                    "country_key": dimension_key,
+                                    "education_key": dimension_key,
+                                    "health_key": dimension_key,
+                                    "nutrition_key": dimension_key,
+                                    "population_key": dimension_key,
+                                    "qualityoflife_key": dimension_key,
+                                    "event_key": event_key,
+                                }
+                            )
+
+                            fact_key += 1
+                    else:
                         writer.writerow(
                             {
                                 "fact_key": fact_key,
@@ -618,7 +626,7 @@ def write_fact_table():
                                 "nutrition_key": dimension_key,
                                 "population_key": dimension_key,
                                 "qualityoflife_key": dimension_key,
-                                "event_key": event_key,
+                                "event_key": None,
                             }
                         )
 

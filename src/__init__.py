@@ -285,14 +285,14 @@ SCHEMA = {
     "WB_HNP": {
         "attributes": {
             "Primary Key": {"name": "fact_key", "type": "SERIAL PRIMARY KEY"},
-            "Month Key": {"name": "month_key", "type": "SERIAL"},
-            "Country Key": {"name": "country_key", "type": "SERIAL"},
-            "Health Key": {"name": "health_key", "type": "SERIAL"},
-            "Population Key": {"name": "population_key", "type": "SERIAL"},
-            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "SERIAL"},
-            "Nutrition Key": {"name": "nutrition_key", "type": "SERIAL"},
-            "Education Key": {"name": "education_key", "type": "SERIAL"},
-            "Event Key": {"name": "event_key", "type": "SERIAL"},
+            "Month Key": {"name": "month_key", "type": "INT NOT NULL"},
+            "Country Key": {"name": "country_key", "type": "INT NOT NULL"},
+            "Health Key": {"name": "health_key", "type": "INT NOT NULL"},
+            "Population Key": {"name": "population_key", "type": "INT NOT NULL"},
+            "QualityOfLife Key": {"name": "qualityoflife_key", "type": "INT NOT NULL"},
+            "Nutrition Key": {"name": "nutrition_key", "type": "INT NOT NULL"},
+            "Education Key": {"name": "education_key", "type": "INT NOT NULL"},
+            "Event Key": {"name": "event_key", "type": "INT"},
         },
         "rules": [
             """

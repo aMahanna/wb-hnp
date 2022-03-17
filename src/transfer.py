@@ -12,6 +12,10 @@ def main():
         logging.info(f"Executing: COPY {name}")
 
         data = pd.read_csv(f"{dir_path}/../csv/tables/stage/{name}.csv")
+
+        if name == "WB_HNP": # Weird bug with Fact Table event_key 
+            data['event_key'] = data['event_key'].astype('Int64')
+
         try:
             data.drop("year_code", inplace=True, axis=1)
             data.drop("country_code", inplace=True, axis=1)
