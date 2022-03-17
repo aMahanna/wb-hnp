@@ -13,8 +13,8 @@ def main():
 
         data = pd.read_csv(f"{dir_path}/../csv/tables/stage/{name}.csv")
 
-        if name == "WB_HNP": # Weird bug with Fact Table event_key 
-            data['event_key'] = data['event_key'].astype('Int64')
+        if name == "WB_HNP":  # Weird bug with Fact Table event_key
+            data["event_key"] = data["event_key"].astype("Int64")
 
         try:
             data.drop("year_code", inplace=True, axis=1)
