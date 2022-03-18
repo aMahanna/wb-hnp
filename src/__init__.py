@@ -23,6 +23,14 @@ password = os.environ.get("PGSQL_PASSWORD")
 # See https://docs.microsoft.com/en-us/azure/postgresql/connect-python
 conn = psycopg2.connect(f"host={host} user={user} dbname={dbname} password={password}")
 
+cursor = conn.cursor()
+cursor.execute("SELECT version()")
+version = cursor.fetchall()[0]
+
+print("--------------")
+print(version)
+print("--------------")
+
 logging.info(f"Connected to {host} - {dbname}")
 
 
