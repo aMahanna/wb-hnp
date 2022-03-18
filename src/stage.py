@@ -413,6 +413,7 @@ def write_nutrition():
         for indicator_name, arr in dic.items():
             new_dict[indicator_name] = replaceNoneSame(arr)
         X[country] = new_dict
+    cs = ['Canada', 'United States', 'Mexico', 'India', 'Ukraine', 'Vietnam', 'Iran, Islamic Rep.', 'China', 'Lebanon']
 
     with open(
         f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline=""
@@ -424,25 +425,16 @@ def write_nutrition():
 
         ################################ Write Nutrition.csv ################################
         nutrition_key = 1
-        indicator_country_to_real_country = {
-            "United States": "US",
-            "Iran, Islamic Rep.": "Iran",
-        }
+
         for country, indicators_dict in X.items():
             for j in range(2005, 2021):
                 year = str(j)
-                if country not in countryNames:
-                    country_code = countryNames.index(
-                        indicator_country_to_real_country[country]
-                    )
-                else:
-                    country_code = countryNames.index(country) + 1
 
                 writer.writerow(
                     {
                         **{
                             "year_code": year,
-                            "country_code": country_code,
+                            "country_code": cs.index(country)+1,
                             "nutrition_key": nutrition_key,
                         },
                         **{
