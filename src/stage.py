@@ -673,7 +673,6 @@ def write_fact_table():
                 dimension_key += 1
 
 
-# TODO: Data Staging, dump into CSV files
 def main():
     write_month()
     write_country()

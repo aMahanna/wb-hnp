@@ -1,26 +1,11 @@
 {
     "WB-HNP": {
-        "MonthKey": "NULL",
-        "CountryKey": "NULL",
-        "EducationKey": "NULL",
-        "QualityOfLifeKey": "NULL",
-        "HealthKey": "NULL",
-        "NutritionKey": "NULL",
-        "PopulationKey": "NULL",
-        "EventKey": "NULL",
         "LifeSatisfaction": "Life satisfaction in Cantril Ladder (World Happiness Report 2021)",
-        "HDI": "NULL (KEY VARIES BY YEAR)",
-        "GNIPerCapita": "NULL (KEY VARIES BY YEAR)"
-    },
-    "Month": {
-        "MonthKey": "NULL",
-        "Name": "NULL",
-        "Quarter": "NULL",
-        "Year": "NULL",
-        "Decade": "NULL"
+        "HDI": "(KEY VARIES BY YEAR)",
+        "GNIPerCapita": "(KEY VARIES BY YEAR)"
     },
     "Country": {
-        "CountryKey": "NULL",
+        "CountryKey": "",
         "Name": "Short Name",
         "Code": "Country Code", 
         "Region": "Region",
@@ -36,7 +21,7 @@
         "LifeExpectencyFemale": "SP.DYN.LE00.FE.IN"
     },
     "Education": {
-        "EducationKey": "NULL",
+        "EducationKey": "",
         "LiteracyRateAdult": "SE.ADT.LITR.ZS",
         "LiteracyRateAdultMale": "SE.ADT.LITR.MA.ZS",
         "LiteracyRateAdultFemale": "SE.ADT.LITR.FE.ZS",
@@ -53,7 +38,7 @@
         "ExpenditureGov": "SE.XPD.TOTL.GD.ZS"
     },
     "Health": {
-        "HealthKey": "NULL",
+        "HealthKey": "",
         "ExpenditureDomesticHealth": "SH.XPD.GHED.GD.ZS",
         "NumHospitalBeds": "SH.MED.BEDS.ZS",
         "NumPhysicians": "SH.MED.PHYS.ZS",
@@ -84,7 +69,7 @@
         "FertilityRate": "SP.DYN.TFRT.IN"
     },
     "Nutrition": {
-        "NutritionKey": "NULL",
+        "NutritionKey": "",
         "PrevalenceHypertension": "SH.HTN.PREV.ZS",
         "PrevalenceHypertensionMale": "SH.HTN.PREV.MA.ZS",
         "PrevalenceHypertensionFemale": "SH.HTN.PREV.FE.ZS",
@@ -98,7 +83,7 @@
         "LowBirthweightBabies": "SH.STA.BRTW.ZS"
     },
     "QualityOfLife": {
-        "QualityOfLifeKey": "NULL",
+        "QualityOfLifeKey": "",
         "Unemployment": "SL.UEM.TOTL.ZS",
         "UnemploymentMale": "SL.UEM.TOTL.MA.ZS",
         "UnemploymentFemale": "SL.UEM.TOTL.FE.ZS",
@@ -119,7 +104,7 @@
         "CatastrophicHealthExpenditureRisk": "SH.SGR.CRSK.ZS"
     },
     "Population": {
-        "PopulationKey": "NULL",
+        "PopulationKey": "",
         "PopulationMale": "SP.POP.TOTL.MA.ZS",
         "PopulationFemale": "SP.POP.TOTL.FE.ZS",
         "PopulationUrban": "SP.URB.TOTL.IN.ZS",
@@ -128,6 +113,7 @@
         "PopulationRuralGrowth": "SP.RUR.TOTL.ZG",
         "PopulationAges0004Male": "SP.POP.0004.MA.5Y",
         "PopulationAges0004Female": "SP.POP.0004.FE.5Y",
+        "...": "...",
         "PopulationAges80UPMale": "SP.POP.80UP.MA.5Y",
         "PopulationAges80UPFemale": "SP.POP.80UP.FE.5Y"
     }
