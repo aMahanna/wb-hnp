@@ -413,7 +413,17 @@ def write_nutrition():
         for indicator_name, arr in dic.items():
             new_dict[indicator_name] = replaceNoneSame(arr)
         X[country] = new_dict
-    cs = ['Canada', 'United States', 'Mexico', 'India', 'Ukraine', 'Vietnam', 'Iran, Islamic Rep.', 'China', 'Lebanon']
+    cs = [
+        "Canada",
+        "United States",
+        "Mexico",
+        "India",
+        "Ukraine",
+        "Vietnam",
+        "Iran, Islamic Rep.",
+        "China",
+        "Lebanon",
+    ]
 
     with open(
         f"{dir_path}/../csv/tables/stage/Nutrition.csv", "w", newline=""
@@ -434,7 +444,7 @@ def write_nutrition():
                     {
                         **{
                             "year_code": year,
-                            "country_code": cs.index(country)+1,
+                            "country_code": cs.index(country) + 1,
                             "nutrition_key": nutrition_key,
                         },
                         **{
@@ -568,20 +578,41 @@ def write_event():
 
 def write_fact_table():
     logging.info("Executing: Write Fact Table")
-    FACT_SCHEMA = SCHEMA["WB_HNP"]["attributes"]
+    FACT_ATRS = SCHEMA["WB_HNP"]["attributes"]
+    MEASURES = [atr["name"] for key, atr in FACT_ATRS.items() if "Measure" in key]
 
-    EVENT_DICT = {
-        code: {month_key: set() for month_key in range(1, 193)}
-        for code in COUNTRY_MAP.values()
-    }
+    ################################ Load Measures ################################
+    MEASURE_DICT = dict()
+    for code in COUNTRY_MAP.values():
+        MEASURE_DICT[code] = {}
+        for year in range(2005, 2021):
+            MEASURE_DICT[code][year] = {}
+            for m in MEASURES:
+                MEASURE_DICT[code][year][m] = -1
+
+    for measure in MEASURES:
+        with open(f"{dir_path}/../csv/measures/{measure}.csv") as measureCSV:
+            reader = csv.DictReader(measureCSV)
+            for country, row in enumerate(reader, start=1):
+                for year in range(2005, 2021):
+                    MEASURE_DICT[country][year][measure] = row[str(year)]
+
+    ################################ Load Events ###################################
+    EVENT_DICT = dict()
+    for code in COUNTRY_MAP.values():
+        EVENT_DICT[code] = {}
+        for month in range(1, 193):
+            EVENT_DICT[code][month] = set()
+
     with open(f"{dir_path}/../csv/tables/stage/Event.csv") as EventCSV:
         reader = csv.DictReader(EventCSV)
         for row in reader:
             for i in range(int(row["start_date"]), int(row["end_date"]) + 1):
                 EVENT_DICT[int(row["country_code"])][i].add(int(row["event_key"]))
 
+    ################################ Write WB_HNP.csv ################################
     with open(f"{dir_path}/../csv/tables/stage/WB_HNP.csv", "w", newline="") as outfile:
-        fieldnames = [atr["name"] for atr in FACT_SCHEMA.values()]
+        fieldnames = [atr["name"] for atr in FACT_ATRS.values()]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -589,12 +620,35 @@ def write_fact_table():
         dimension_key = 1
         for country_code in range(1, 10):
             month_key = 1
-            for _ in range(2005, 2021):
+            for year in range(2005, 2021):
                 for _ in range(1, 13):
                     if EVENT_DICT[country_code][month_key]:
                         for event_key in EVENT_DICT[country_code][month_key]:
                             writer.writerow(
                                 {
+                                    **{
+                                        "fact_key": fact_key,
+                                        "month_key": month_key,
+                                        "country_key": dimension_key,
+                                        "education_key": dimension_key,
+                                        "health_key": dimension_key,
+                                        "nutrition_key": dimension_key,
+                                        "population_key": dimension_key,
+                                        "qualityoflife_key": dimension_key,
+                                        "event_key": event_key,
+                                    },
+                                    **{
+                                        m: MEASURE_DICT[country_code][year][m]
+                                        for m in MEASURES
+                                    },
+                                }
+                            )
+
+                            fact_key += 1
+                    else:
+                        writer.writerow(
+                            {
+                                **{
                                     "fact_key": fact_key,
                                     "month_key": month_key,
                                     "country_key": dimension_key,
@@ -603,23 +657,12 @@ def write_fact_table():
                                     "nutrition_key": dimension_key,
                                     "population_key": dimension_key,
                                     "qualityoflife_key": dimension_key,
-                                    "event_key": event_key,
-                                }
-                            )
-
-                            fact_key += 1
-                    else:
-                        writer.writerow(
-                            {
-                                "fact_key": fact_key,
-                                "month_key": month_key,
-                                "country_key": dimension_key,
-                                "education_key": dimension_key,
-                                "health_key": dimension_key,
-                                "nutrition_key": dimension_key,
-                                "population_key": dimension_key,
-                                "qualityoflife_key": dimension_key,
-                                "event_key": None,
+                                    "event_key": None,
+                                },
+                                **{
+                                    m: MEASURE_DICT[country_code][year][m]
+                                    for m in MEASURES
+                                },
                             }
                         )
 
@@ -636,7 +679,7 @@ def main():
     write_country()
     write_education()
     write_health()
-    # write_nutrition()
+    write_nutrition()
     write_qualityoflife()
     write_population()
     write_event()

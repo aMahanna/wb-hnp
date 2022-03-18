@@ -292,6 +292,9 @@ SCHEMA = {
             "Nutrition Key": {"name": "nutrition_key", "type": "INT NOT NULL"},
             "Education Key": {"name": "education_key", "type": "INT NOT NULL"},
             "Event Key": {"name": "event_key", "type": "INT"},
+            "Measure_1": {"name": "life_satis", "type": "FLOAT NOT NULL"},
+            "Measure_2": {"name": "hdi", "type": "FLOAT NOT NULL"},
+            "Measure_3": {"name": "gni", "type": "FLOAT NOT NULL"},
         },
         "rules": [
             """
