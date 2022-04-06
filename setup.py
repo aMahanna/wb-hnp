@@ -11,6 +11,7 @@ setup(
     install_requires=[
         "psycopg2-binary",
         "python-dotenv",
+        "scikit-learn",
         "pandas"
     ],
 )
